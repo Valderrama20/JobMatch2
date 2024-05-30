@@ -1,9 +1,12 @@
 import { star } from "../../utils/icons";
 import img1 from "../../../public/images/img.jpg";
-function Details() {
+function Details({ closeModal }) {
   return (
     <div className="w-full absolute inset-x-0 ">
       <div className=" bg-white rounded-xl p-3 w-[410px] box2 mx-auto">
+        <button onClick={closeModal} className="font-bold">
+          X
+        </button>
         <div className=" flex justify-center">
           <img src={img1} alt="name" className="h-28 w-28" />
         </div>
