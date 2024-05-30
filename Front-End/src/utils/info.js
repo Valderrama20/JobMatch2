@@ -77,7 +77,7 @@ export const publicaciones = [
     longitude: -58.5031222,
     color: "#f84d4d",
     userData: {
-      _id:1
+      _id: 1,
       name: "Lautaro Ríos",
       mail: "lautaror@procrew.ar",
       Phone: "12345678",
