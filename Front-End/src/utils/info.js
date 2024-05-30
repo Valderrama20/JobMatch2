@@ -7,6 +7,7 @@ import {
   herreria,
   jardineria,
   limpieza,
+  mail,
   mudanza,
   pintura,
   plomeria,
@@ -76,11 +77,15 @@ export const publicaciones = [
     longitude: -58.5031222,
     color: "#f84d4d",
     userData: {
+      _id: 1,
       name: "Lautaro Ríos",
-      zona: "Balvanera",
+      mail: "lautaror@procrew.ar",
+      Phone: "12345678",
+      Availability: "9:00 AM a 5:00 PM",
+      zone: "Balvanera",
       description:
         "Gasista matriculado, arreglos, instalaciones, pruebas de artefactos",
-      resumen: "",
+      Rating: [1, 4, 2.5, 3],
       category: "Gasista",
       img: img1,
     },
@@ -96,7 +101,7 @@ export const publicaciones = [
     color: "#f84d4d",
     userData: {
       name: "Martín Palermo",
-      zona: "Recoleta",
+      zone: "Recoleta",
       description:
         "Gasista matriculado, arreglos, instalaciones, pruebas de artefactos",
       resumen: "",
@@ -111,7 +116,7 @@ export const publicaciones = [
     color: "#f84d4d",
     userData: {
       name: "Luis Franco",
-      zona: "Barrio Norte",
+      zone: "Barrio Norte",
       description:
         "Gasista matriculado, arreglos, instalaciones, pruebas de artefactos",
       resumen: "",

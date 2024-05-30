@@ -15,6 +15,7 @@ function Maps() {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapRef.current,
+      center: { lng: -58.3816, lat: -34.6037 },
       style: "mapbox://styles/mapbox/streets-v11",
     });
 
@@ -27,9 +28,9 @@ function Maps() {
     });
 
     let markers = publicaciones.map((e) => {
-      let marker = new mapboxgl.Marker({ color: "red" })
+      let marker = new mapboxgl.Marker({ color: "green" })
         .setLngLat([e.longitude, e.latitude])
-        .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(popup))
+        // .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(popup))
         .addTo(map);
 
       return {
@@ -42,9 +43,9 @@ function Maps() {
     setMarkers(markers);
   }, []);
 
-  const filterPublications = (zona) => {
+  const filterPublications = (zone) => {
     markers.forEach((e) => {
-      if (e.zona != zona) {
+      if (e.zone != zone) {
         e.marker.remove();
       }
     });
@@ -57,7 +58,7 @@ function Maps() {
   };
 
   const focus = (id) => {
-    openDetails();
+    toggleModalAndClose();
     markers.forEach((e) => {
       if (e._id == id) {
         map.flyTo({
@@ -72,23 +73,18 @@ function Maps() {
     });
   };
 
-  const openDetails = () => {
+  const toggleModalAndClose = () => {
     setDetailIsOpen(!detailIsOpen);
   };
 
   return (
     <div className="h-screen w-screen p-10 overflow-x-hidden">
       <p className="font-semibold text-4xl text-[#257341] mb-10">
-        Gasistas disponibles en tu zona
+        Gasistas disponibles en tu zone
       </p>
       <div className="flex h-full">
         <div ref={mapRef} className="w-1/2  "></div>
         <div className="w-1/2 relative">
-          {/* <button onClick={() => filterPublications("Mataderos")}>
-            Filtrar
-          </button>
-          <button onClick={allPublications}>Todos</button> */}
-
           <ul className={`h-full overflow-y-auto ${detailIsOpen && "hidden"}`}>
             {publicaciones.map((e) => {
               return (
@@ -98,7 +94,7 @@ function Maps() {
               );
             })}
           </ul>
-          {detailIsOpen && <Details />}
+          {detailIsOpen && <Details closeModal={toggleModalAndClose} />}
         </div>
       </div>
     </div>
