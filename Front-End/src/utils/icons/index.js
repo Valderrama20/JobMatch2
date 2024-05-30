@@ -1,0 +1,16 @@
+export { default as plomeria } from "./plomeria.png";
+export { default as carpinteria } from "./carpinteria.png";
+export { default as cerrajeria } from "./cerrajeria.png";
+export { default as albañileria } from "./albañileria.png";
+export { default as herreria } from "./herreria.png";
+export { default as jardineria } from "./jardineria.png";
+export { default as limpieza } from "./limpieza.png";
+export { default as mudanza } from "./mudanza.png";
+export { default as pintura } from "./pintura.png";
+export { default as reparaciones } from "./reparaciones.png";
+export { default as climatizacion } from "./climatizacion.png";
+export { default as gas } from "./gas.png";
+export { default as star } from "./star.png";
+export { default as mail } from "./mail.png";
+export { default as favorite } from "./favorite.png";
+export { default as call } from "./call.png";
