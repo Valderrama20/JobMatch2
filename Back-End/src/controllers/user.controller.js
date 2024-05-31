@@ -11,7 +11,7 @@ const getAll = catchError(async(req, res) => {
 });
 
 const createUser = catchError(async(req, res) => {
-    const { name, email, phone, password, availability, img} = req.body
+    const { name, email, phone, password, availability, rating, img} = req.body
     const encriptedPassword = await bcrypt.hash(password, 10)
     const user = await User.create({
         name,
@@ -19,6 +19,7 @@ const createUser = catchError(async(req, res) => {
         phone,
         password: encriptedPassword,
         availability,
+        rating,
         img,
     });
     return res.status(201).json(user);
@@ -44,9 +45,9 @@ const removeUser = catchError(async(req, res) => {
 
 const updateUser = catchError(async(req, res) => {
     const { id } = req.params;
-    const { name, phone, availability, img } = req.body
+    const { name, phone, availability, rating, img } = req.body
     const user = await User.update(
-        {name, phone, availability, img},
+        {name, phone, availability, rating, img},
         { where: {id}, returning: true }
     );
     if(user[0] === 0) return res.sendStatus(404);
