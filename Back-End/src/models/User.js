@@ -19,13 +19,18 @@ const User = sequelize.define('user', {
     },
 
     availability: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         allowNull: false
     },
     
     img: {
         type: DataTypes.TEXT,
         allowNull: false
+    },
+
+    rating: {
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        allowNull: true
     },
 
     password: {
