@@ -18,7 +18,7 @@ userRouter.route('/users/logout')
     .post(logout)
 
 userRouter.route('/users/:id')
-    .get(getOne)
+    .get(verifyJWT, getOne)
     .delete(verifyJWT, removeUser)
     .put(verifyJWT, updateUser);
 
