@@ -18,19 +18,20 @@ function Maps() {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapRef.current,
-      center: { lng: -58.3816, lat: -34.6037 },
+      center: { lng: -58.4507, lat: -34.6061 },
+      zoom: 10.5,
       style: "mapbox://styles/mapbox/streets-v11",
     });
 
-    map.on("load", () => {
-      // Limit panning to Buenos Aires
-      map.setMaxBounds([
-        [-58.542, -34.714],
-        [-58.341, -34.504],
-      ]);
-    });
+    // map.on("load", () => {
+    // Limit panning to Buenos Aires
+    // map.setMaxBounds([
+    //   [-58.542, -34.714],
+    //   [-58.341, -34.504],
+    // ]);
+    // });
 
-    let markers = publicaciones.map((e) => {
+    let markers = publicaciones[category].map((e) => {
       let marker = new mapboxgl.Marker({ color: "green" })
         .setLngLat([e.longitude, e.latitude])
         // .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(popup))
@@ -46,17 +47,13 @@ function Maps() {
     setMarkers(markers);
   }, []);
 
-  const filterPublications = (zone) => {
-    markers.forEach((e) => {
-      if (e.zone != zone) {
-        e.marker.remove();
-      }
-    });
-  };
+  const filterPublications = (e) => {
+    let zone = e.target.value;
 
-  const allPublications = () => {
     markers.forEach((e) => {
-      e.marker.addTo(map);
+      zone === "todas" || zone === e.zone
+        ? e.marker.addTo(map)
+        : e.marker.remove();
     });
   };
 
@@ -85,11 +82,20 @@ function Maps() {
       <p className="font-semibold text-4xl text-[#257341] mb-10">
         {category} disponibles en tu zona
       </p>
+      <div>
+        Zona:{" "}
+        <select name="Zonas" id="" onChange={filterPublications}>
+          <option value="todas">Todas</option>
+          {publicaciones[category].map((e) => {
+            return <option value={e.zone}>{e.zone}</option>;
+          })}
+        </select>
+      </div>
       <div className="flex h-full">
-        <div ref={mapRef} className="w-1/2  "></div>
+        <div ref={mapRef} className="w-1/2 "></div>
         <div className="w-1/2 relative">
           <ul className={`h-full overflow-y-auto ${detailIsOpen && "hidden"}`}>
-            {publicaciones.map((e) => {
+            {markers?.map((e) => {
               return (
                 <li onClick={() => focus(e._id)}>
                   <Card key={e._id} data={e} />
