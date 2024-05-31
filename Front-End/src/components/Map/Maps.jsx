@@ -9,6 +9,7 @@ function Maps() {
   // AIzaSyDRu5QEijvI4K2Vzl53M-jWz79EtcVwgMY api de google cloud
   // center of Buenos aires { lat: -34.6037, lng: -58.3816 }
   let { category } = useParams();
+  console.log(category);
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState(null);
@@ -30,7 +31,7 @@ function Maps() {
       ]);
     });
 
-    let markers = publicaciones.map((e) => {
+    let markers = publicaciones[category].map((e) => {
       let marker = new mapboxgl.Marker({ color: "green" })
         .setLngLat([e.longitude, e.latitude])
         // .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(popup))
@@ -89,7 +90,7 @@ function Maps() {
         <div ref={mapRef} className="w-1/2  "></div>
         <div className="w-1/2 relative">
           <ul className={`h-full overflow-y-auto ${detailIsOpen && "hidden"}`}>
-            {publicaciones.map((e) => {
+            {publicaciones[category].map((e) => {
               return (
                 <li onClick={() => focus(e._id)}>
                   <Card key={e._id} data={e} />
