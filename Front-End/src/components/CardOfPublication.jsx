@@ -1,7 +1,8 @@
 import { favorite, mail, call, star } from "../utils/icons";
 
-function Card({ userData }) {
-  let { description, zona, name, category, img } = userData;
+function Card({ data }) {
+  let { description, zone, category, userData } = data;
+  let { name, img } = userData;
   return (
     <div className={"m-5 mt-0 flex items-end space-x-3 cursor-pointer"}>
       <img src={img} alt="" className="h-30 w-30 pb-2 " />
@@ -15,7 +16,7 @@ function Card({ userData }) {
             5.0 <img src={star} alt="" className="ml-1" />
           </div>
         </div>
-        <p className="font-medium text-base leading-3">{zona}</p>
+        <p className="font-medium text-base leading-3">{zone}</p>
         <p className="leading-8">{description}</p>
         <div className="flex justify-between items-center">
           <div className="text-sm font-semibold flex space-x-2">
