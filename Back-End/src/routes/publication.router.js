@@ -1,5 +1,5 @@
 const express = require('express')
-const { createPublication, getAll, remove } = require('../controllers/publication.controller.js')
+const { createPublication, getAll,  removePublication, getPublication } = require('../controllers/publication.controller.js')
 
 
 const publicationRouter = express.Router()
@@ -9,6 +9,7 @@ publicationRouter.route('/publications')
 .post(createPublication)
 
 publicationRouter.route('/publications/:id')
-.delete(remove)
+.get(getPublication)
+.delete( removePublication)
 
 module.exports = publicationRouter
