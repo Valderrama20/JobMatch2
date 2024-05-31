@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<PerfilPage />} />
         <Route path="/post" element={<h1>Post</h1>} />
-        <Route path="/map" element={<Maps />} />
+        <Route path="/map/:category" element={<Maps />} />
       </Routes>
     </BrowserRouter>
   );
