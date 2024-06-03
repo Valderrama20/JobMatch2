@@ -40,10 +40,10 @@ export let categorys = [
     icon: cerrajeria,
     category: "Cerrajería",
   },
-  {
-    icon: mudanza,
-    category: "Mudanza y Transporte",
-  },
+  // {
+  //   icon: mudanza,
+  //   category: "Mudanza y Transporte",
+  // },
   {
     icon: jardineria,
     category: "Jardineria y Paisajismo",
@@ -64,10 +64,10 @@ export let categorys = [
     icon: limpieza,
     category: "Limpieza y Mantenimiento",
   },
-  {
-    icon: pintura,
-    category: "Pintura",
-  },
+  // {
+  //   icon: pintura,
+  //   category: "Pintura",
+  // },
 ];
 
 export const publicaciones = {

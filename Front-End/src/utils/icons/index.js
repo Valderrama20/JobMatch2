@@ -14,3 +14,6 @@ export { default as star } from "./star.png";
 export { default as mail } from "./mail.png";
 export { default as favorite } from "./favorite.png";
 export { default as call } from "./call.png";
+export { default as next } from "./next.png";
+export { default as back } from "./back.png";
+export { default as starDorada } from "./starDorada.png";
