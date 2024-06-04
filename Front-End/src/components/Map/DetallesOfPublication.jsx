@@ -14,7 +14,7 @@ function Details({ closeModal, details }) {
           X
         </button>
         <div className=" flex justify-center">
-          <img src={img} alt="name" className="h-28 w-28" />
+          <img src="" alt="name" className="h-28 w-28" />
         </div>
         <div>
           <h3 className="text-2xl font-semibold">{name}</h3>
@@ -42,8 +42,10 @@ function Details({ closeModal, details }) {
             </span>
             <div className="relative flex items-center">
               <div className="flex ">
-                {[1, 2, 3, 4, 5].map(() => {
-                  return <img src={star} alt="star" className=" px-1 " />;
+                {[1, 2, 3, 4, 5].map((_, i) => {
+                  return (
+                    <img src={star} alt="star" className=" px-1 " key={i} />
+                  );
                 })}
               </div>
               <p className="left-4 absolute -bottom-2 text-sm font-medium text-[#00000078]">

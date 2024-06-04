@@ -21,7 +21,7 @@ function Home() {
           {campanaIcon} {personIcon}
         </div>
       </div>
-      {/*  */}
+      {/* intro*/}
       <div className="flex py-16  bgGradient">
         <div className="w-1/2 flex flex-col  justify-center px-10">
           <h2 className="font-bold text-5xl leading-tight mb-3">
@@ -48,8 +48,8 @@ function Home() {
           <br /> a solo un click de distancia
         </h3>
         <div className="flex flex-wrap justify-center px-28">
-          {categorys.map((e) => {
-            return <Card data={e} />;
+          {categorys.map((e, i) => {
+            return <Card data={e} key={i} />;
           })}
         </div>
       </div>

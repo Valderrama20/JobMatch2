@@ -1,10 +1,13 @@
 import { favorite, mail, call, star } from "../utils/icons";
 
 function Card({ data }) {
-  let { description, zone, category, userData } = data;
+  let { description, zone, category, userData, style } = data;
   let { name, img } = userData;
+
   return (
-    <div className={"m-5 mt-0 flex items-end space-x-3 cursor-pointer"}>
+    <div
+      className={`m-5 mt-0 flex items-end space-x-3 cursor-pointer ${style}`}
+    >
       <img src={img} alt="" className="h-30 w-30 pb-2 " />
       <div className="w-full">
         <span className="font-medium text-[10px] px-2 py-0.5 bg-[#179e443e] text-[#004B19] rounded-full">
@@ -17,7 +20,7 @@ function Card({ data }) {
           </div>
         </div>
         <p className="font-medium text-base leading-3">{zone}</p>
-        <p className="leading-8">{description}</p>
+        <p className="leading-4 py-2">{description}</p>
         <div className="flex justify-between items-center">
           <div className="text-sm font-semibold flex space-x-2">
             <button
