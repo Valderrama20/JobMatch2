@@ -14,9 +14,9 @@ import {
   reparaciones,
 } from "../utils/icons";
 
-import img1 from "../../public/images/img.jpg";
-import img2 from "../../public/images/img2.jpg";
-import img3 from "../../public/images/img3.jpg";
+import grupo1 from "../../public/images/grupo1.png";
+import grupo2 from "../../public/images/grupo2.png";
+import grupo3 from "../../public/images/grupo3.png";
 
 export let categorys = [
   {
@@ -68,6 +68,24 @@ export let categorys = [
   //   icon: pintura,
   //   category: "Pintura",
   // },
+];
+
+export const infoOfApp = [
+  {
+    img: grupo1,
+    title: " Dinos que necesitas",
+    text: " Explora las categorías y cuéntanos tu necesidad. Nosotros lo compartiremos con profesionales recomendados que te ayudarán a resolverlos arreglos en tu hogar.",
+  },
+  {
+    img: grupo2,
+    title: "Elige entre cientos de profesionales",
+    text: "Podrás elegir entre personal calificado dentro de tu zona que te asesorarán en lo que necesites.",
+  },
+  {
+    img: grupo3,
+    title: "Elige entre cientos de profesionales",
+    text: "Cuando tengas toda la información, contrata de manera directa sin intermediarios ni sobrecostos.",
+  },
 ];
 
 export const publicaciones = {

@@ -1,11 +1,10 @@
 import { personIcon, campanaIcon } from "../../public/svg.jsx";
 import Card from "../components/CardOfCategori.jsx";
-import CardCalification from "../components/CardOfCalification.jsx";
 import { categorys } from "../utils/info.js";
 import img4 from "../../public/images/img4.jpg";
-import { back, next } from "../utils/icons/index.js";
 import MarqueeDemo from "../components/Prueba.tsx";
-
+import Carrusel from "../components/Carrusel.jsx";
+import CardOfInfo from "../components/CardOfInfo.jsx";
 function Home() {
   return (
     <div className="w-screen h-full ">
@@ -23,7 +22,7 @@ function Home() {
         </div>
       </nav>
       {/* intro*/}
-      <div className="flex py-24  bgGradient">
+      <div className="flex py-20  bgGradient">
         <div className="w-1/2 flex flex-col  justify-center px-10">
           <h2 className="font-bold text-5xl leading-tight mb-3">
             Buscá profesionales <br />
@@ -43,7 +42,7 @@ function Home() {
         </div>
       </div>
       {/* Categorias */}
-      <div className="h-screen">
+      <div className="h-screen flex flex-col justify-center">
         <h3 className="font-bold text-center text-4xl">
           Transforma tu hogar con los mejores profesionales,
           <br /> a solo un click de distancia
@@ -55,7 +54,7 @@ function Home() {
         </div>
       </div>
       {/* Explicacion de la Web */}
-      <div className="flex justify-center items-center flex-col pb-14">
+      <div className="flex h-screen justify-center items-center flex-col pb-5">
         <div className="w-[420px] text-center space-y-3">
           <h3 className="font-extrabold text-4xl ">¿Cómo funciona?</h3>
           <p className="text-[#6D7280] font-medium">
@@ -63,20 +62,10 @@ function Home() {
             cualquier inconveniente en tu hogar{" "}
           </p>
         </div>
-
-        <div className="flex items-center py-3">
-          <img src={back} alt="backIcon" className="h-16 w-16" />
-          <img src="" alt="" className="border h-96 w-[700px] mx-10" />
-          <img src={next} alt="nextIcon" className="h-16 w-16" />
-        </div>
-        <div className="flex space-x-1 my-2">
-          <div className="h-4 w-4 border rounded-full bg-green-800"></div>
-          <div className="h-4 w-4 border rounded-full "></div>
-          <div className="h-4 w-4 border rounded-full "></div>
-        </div>
+        <Carrusel />
       </div>
       {/* Reseñas de JobMatch */}
-      <div className="flex flex-col justify-center items-center text-center my-10">
+      <div className="flex h-screen flex-col justify-center items-center text-center ">
         <h3 className="font-extrabold text-4xl mb-4">
           ¿Qué dicen los usuarios <br /> de Jobmatch?
         </h3>
