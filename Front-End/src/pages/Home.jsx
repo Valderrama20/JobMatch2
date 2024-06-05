@@ -4,11 +4,12 @@ import CardCalification from "../components/CardOfCalification.jsx";
 import { categorys } from "../utils/info.js";
 import img4 from "../../public/images/img4.jpg";
 import { back, next } from "../utils/icons/index.js";
+import MarqueeDemo from "../components/Prueba.tsx";
 
 function Home() {
   return (
     <div className="w-screen h-full ">
-      <div className="flex w-full  py-5 items-center space-x-5 pl-10 pr-16">
+      <nav className="flex w-full  py-5 items-center space-x-5 pl-10 pr-16">
         <h1 className="text-black font-extrabold text-xl">JOBMATCH</h1>
         <div className="flex w-full bg-[#FFF]  py-2 border-2 rounded-md  text-[#625F5F]">
           <input
@@ -20,9 +21,9 @@ function Home() {
         <div className="flex space-x-6 ">
           {campanaIcon} {personIcon}
         </div>
-      </div>
-      {/*  */}
-      <div className="flex py-16  bgGradient">
+      </nav>
+      {/* intro*/}
+      <div className="flex py-24  bgGradient">
         <div className="w-1/2 flex flex-col  justify-center px-10">
           <h2 className="font-bold text-5xl leading-tight mb-3">
             Buscá profesionales <br />
@@ -42,19 +43,19 @@ function Home() {
         </div>
       </div>
       {/* Categorias */}
-      <div>
+      <div className="h-screen">
         <h3 className="font-bold text-center text-4xl">
           Transforma tu hogar con los mejores profesionales,
           <br /> a solo un click de distancia
         </h3>
         <div className="flex flex-wrap justify-center px-28">
-          {categorys.map((e) => {
-            return <Card data={e} />;
+          {categorys.map((e, i) => {
+            return <Card data={e} key={i} />;
           })}
         </div>
       </div>
       {/* Explicacion de la Web */}
-      <div className="flex justify-center items-center flex-col py-14">
+      <div className="flex justify-center items-center flex-col pb-14">
         <div className="w-[420px] text-center space-y-3">
           <h3 className="font-extrabold text-4xl ">¿Cómo funciona?</h3>
           <p className="text-[#6D7280] font-medium">
@@ -84,11 +85,7 @@ function Home() {
           de contratar a un profesional, o conocer los beneficios de utilizar la
           plataforma como prestador.
         </p>
-        <div className="flex space-x-6 mt-5">
-          <CardCalification />
-          <CardCalification />
-          <CardCalification />
-        </div>
+        <MarqueeDemo />
       </div>
     </div>
   );

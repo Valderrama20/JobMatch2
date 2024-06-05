@@ -1,5 +1,5 @@
 import { star } from "../../utils/icons";
-function Details({ closeModal, details }) {
+function Details({ closeDetails, details }) {
   let { zone, userData, description } = details;
   let { name, img, phone, mail, availability, rating } = userData;
 
@@ -8,13 +8,13 @@ function Details({ closeModal, details }) {
   };
 
   return (
-    <div className="w-full absolute inset-x-0 ">
-      <div className=" bg-white rounded-xl p-3 w-[410px] box2 mx-auto">
-        <button onClick={closeModal} className="font-bold">
+    <div className=" flex top-0 fixed h-screen w-screen ">
+      <div className=" bg-white rounded-xl p-3 w-[410px] box2 mx-auto z-50  ">
+        <button onClick={closeDetails} className="font-bold">
           X
         </button>
         <div className=" flex justify-center">
-          <img src={img} alt="name" className="h-28 w-28" />
+          <img src="" alt="name" className="h-28 w-28" />
         </div>
         <div>
           <h3 className="text-2xl font-semibold">{name}</h3>
@@ -42,8 +42,10 @@ function Details({ closeModal, details }) {
             </span>
             <div className="relative flex items-center">
               <div className="flex ">
-                {[1, 2, 3, 4, 5].map(() => {
-                  return <img src={star} alt="star" className=" px-1 " />;
+                {[1, 2, 3, 4, 5].map((_, i) => {
+                  return (
+                    <img src={star} alt="star" className=" px-1 " key={i} />
+                  );
                 })}
               </div>
               <p className="left-4 absolute -bottom-2 text-sm font-medium text-[#00000078]">
@@ -58,6 +60,7 @@ function Details({ closeModal, details }) {
           </div>
         </div>
       </div>
+      <div className="fixed bg-black opacity-40 inset-0 z-40 "></div>
     </div>
   );
 }

@@ -23,48 +23,44 @@ function Maps() {
       style: "mapbox://styles/mapbox/streets-v11",
     });
 
-    // map.on("load", () => {
-    // Limit panning to Buenos Aires
-    // map.setMaxBounds([
-    //   [-58.542, -34.714],
-    //   [-58.341, -34.504],
-    // ]);
-    // });
-
     let markers = publicaciones[category].map((e) => {
       let marker = new mapboxgl.Marker({ color: "green" })
         .setLngLat([e.longitude, e.latitude])
-        // .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(popup))
         .addTo(map);
 
       return {
         ...e,
+        style: "",
         marker: marker,
       };
     });
 
     setMap(map);
     setMarkers(markers);
+    return () => map.remove();
   }, []);
 
   const filterPublications = (e) => {
     let zone = e.target.value;
 
-    markers.forEach((e) => {
-      zone === "todas" || zone === e.zone
-        ? e.marker.addTo(map)
-        : e.marker.remove();
+    let filter = markers.map((e) => {
+      if (zone === "todas" || zone === e.zone) {
+        e.style = "";
+        e.marker.addTo(map);
+      } else {
+        e.style = "hidden";
+        e.marker.remove();
+      }
+      return e;
     });
+    setMarkers(filter);
   };
 
-  const toggleModalAndClose = useCallback(() => {
-    setDetailIsOpen((prev) => !prev);
-  }, []);
+  const toggleModalAndClose = useCallback(() => {}, []);
 
   const focus = useCallback(
     (id) => {
       let publication = markers.find((e) => e._id === id);
-      setUserDetails(publication);
       map.flyTo({
         center: publication.marker.getLngLat(),
         zoom: 14,
@@ -72,49 +68,63 @@ function Maps() {
         curve: 1,
         essential: true,
       });
-      toggleModalAndClose();
     },
     [markers, map, toggleModalAndClose]
   );
+
+  let openDetailsAndClose = (id = null) => {
+    if (id) {
+      let publication = markers.find((e) => e._id === id);
+      setUserDetails(publication);
+    }
+
+    setDetailIsOpen((prev) => !prev);
+  };
 
   return (
     <div className="h-screen w-screen p-10 overflow-x-hidden">
       <p className="font-semibold text-4xl text-[#257341] mb-10">
         {category} disponibles en tu zona
       </p>
-      <div>
+      <div className="pb-4">
         Zona:{" "}
-        <select name="Zonas" id="" onChange={filterPublications}>
+        <select
+          name="Zonas"
+          id=""
+          onChange={filterPublications}
+          className="bg-[#EBE3E35E] rounded-md py-1"
+        >
           <option value="todas">Todas</option>
-          {publicaciones[category].map((e) => {
-            return <option value={e.zone}>{e.zone}</option>;
+          {publicaciones[category].map((e, i) => {
+            return (
+              <option value={e.zone} key={i}>
+                {e.zone}
+              </option>
+            );
           })}
         </select>
       </div>
       <div className="flex h-full">
-        <div ref={mapRef} className="w-1/2 "></div>
-        <div className="w-1/2 relative">
+        <div ref={mapRef} className="w-1/2 z-0 "></div>
+        <div className="w-1/2">
           <ul className={`h-full overflow-y-auto ${detailIsOpen && "hidden"}`}>
             {markers?.map((e) => {
               return (
-                <li onClick={() => focus(e._id)}>
-                  <Card key={e._id} data={e} />
-                </li>
+                <Card
+                  data={e}
+                  focus={focus}
+                  openDetails={openDetailsAndClose}
+                />
               );
             })}
           </ul>
-          {detailIsOpen && (
-            <Details closeModal={toggleModalAndClose} details={userDetails} />
-          )}
         </div>
       </div>
+      {detailIsOpen && (
+        <Details closeDetails={openDetailsAndClose} details={userDetails} />
+      )}
     </div>
   );
 }
 
 export default Maps;
-
-let popup = `<h1>Hola mundo</h1> 
-             <p>este es un texto de prueba</p>
-             <img src="https://kinsta.com/es/wp-content/uploads/sites/8/2023/04/react-must-be-in-scope-when-using-jsx.jpg"/>
-             `;
