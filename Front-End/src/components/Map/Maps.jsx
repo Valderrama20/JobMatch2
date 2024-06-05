@@ -56,14 +56,11 @@ function Maps() {
     setMarkers(filter);
   };
 
-  const toggleModalAndClose = useCallback(() => {
-    setDetailIsOpen((prev) => !prev);
-  }, []);
+  const toggleModalAndClose = useCallback(() => {}, []);
 
   const focus = useCallback(
     (id) => {
       let publication = markers.find((e) => e._id === id);
-      setUserDetails(publication);
       map.flyTo({
         center: publication.marker.getLngLat(),
         zoom: 14,
@@ -71,10 +68,18 @@ function Maps() {
         curve: 1,
         essential: true,
       });
-      toggleModalAndClose();
     },
     [markers, map, toggleModalAndClose]
   );
+
+  let openDetailsAndClose = (id = null) => {
+    if (id) {
+      let publication = markers.find((e) => e._id === id);
+      setUserDetails(publication);
+    }
+
+    setDetailIsOpen((prev) => !prev);
+  };
 
   return (
     <div className="h-screen w-screen p-10 overflow-x-hidden">
@@ -100,22 +105,24 @@ function Maps() {
         </select>
       </div>
       <div className="flex h-full">
-        <div ref={mapRef} className="w-1/2 "></div>
-        <div className="w-1/2 relative">
+        <div ref={mapRef} className="w-1/2 z-0 "></div>
+        <div className="w-1/2">
           <ul className={`h-full overflow-y-auto ${detailIsOpen && "hidden"}`}>
             {markers?.map((e) => {
               return (
-                <li key={e._id} onClick={() => focus(e._id)}>
-                  <Card data={e} />
-                </li>
+                <Card
+                  data={e}
+                  focus={focus}
+                  openDetails={openDetailsAndClose}
+                />
               );
             })}
           </ul>
-          {detailIsOpen && (
-            <Details closeModal={toggleModalAndClose} details={userDetails} />
-          )}
         </div>
       </div>
+      {detailIsOpen && (
+        <Details closeDetails={openDetailsAndClose} details={userDetails} />
+      )}
     </div>
   );
 }

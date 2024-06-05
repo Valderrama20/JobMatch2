@@ -1,5 +1,5 @@
 import { star } from "../../utils/icons";
-function Details({ closeModal, details }) {
+function Details({ closeDetails, details }) {
   let { zone, userData, description } = details;
   let { name, img, phone, mail, availability, rating } = userData;
 
@@ -8,9 +8,9 @@ function Details({ closeModal, details }) {
   };
 
   return (
-    <div className="w-full absolute inset-x-0 ">
-      <div className=" bg-white rounded-xl p-3 w-[410px] box2 mx-auto">
-        <button onClick={closeModal} className="font-bold">
+    <div className=" flex top-0 fixed h-screen w-screen ">
+      <div className=" bg-white rounded-xl p-3 w-[410px] box2 mx-auto z-50  ">
+        <button onClick={closeDetails} className="font-bold">
           X
         </button>
         <div className=" flex justify-center">
@@ -60,6 +60,7 @@ function Details({ closeModal, details }) {
           </div>
         </div>
       </div>
+      <div className="fixed bg-black opacity-40 inset-0 z-40 "></div>
     </div>
   );
 }
