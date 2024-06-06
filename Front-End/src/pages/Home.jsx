@@ -4,7 +4,6 @@ import { categorys } from "../utils/info.js";
 import img4 from "../../public/images/img4.jpg";
 import MarqueeDemo from "../components/Prueba.tsx";
 import Carrusel from "../components/Carrusel.jsx";
-import CardOfInfo from "../components/CardOfInfo.jsx";
 function Home() {
   return (
     <div className="w-screen h-full ">

@@ -1,6 +1,7 @@
 import { cn } from "../utils/magicUi";
 import Card from "../components/CardOfCalification";
 import React from "react";
+import { calificationsOfApp } from "../utils/info";
 interface MarqueeProps {
   className?: string;
   reverse?: boolean;
@@ -53,10 +54,10 @@ function Marquee({
 
 const MarqueeDemo = () => {
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg  bg-background pt-10 ">
-      <Marquee pauseOnHover className="[--duration:25s]">
-        {[1, 2, 3, 4, 5].map(() => (
-          <Card />
+    <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg  bg-background  ">
+      <Marquee className="[--duration:25s]">
+        {calificationsOfApp.map((e) => (
+          <Card data={e} />
         ))}
       </Marquee>
 
