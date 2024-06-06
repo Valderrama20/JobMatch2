@@ -4,6 +4,7 @@ import Card from "../CardOfPublication";
 import { publicaciones } from "../../utils/info";
 import Details from "./DetallesOfPublication";
 import { useParams } from "react-router-dom";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function Maps() {
   // AIzaSyDRu5QEijvI4K2Vzl53M-jWz79EtcVwgMY api de google cloud
@@ -12,8 +13,10 @@ function Maps() {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState(null);
+  const [markers2, setMarkers2] = useState(null);
   const [detailIsOpen, setDetailIsOpen] = useState(false);
   const [userDetails, setUserDetails] = useState({});
+  const [parent] = useAutoAnimate();
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -37,23 +40,23 @@ function Maps() {
 
     setMap(map);
     setMarkers(markers);
+    setMarkers2(markers);
     return () => map.remove();
   }, []);
 
   const filterPublications = (e) => {
     let zone = e.target.value;
 
-    let filter = markers.map((e) => {
+    let filter = markers.filter((e) => {
       if (zone === "todas" || zone === e.zone) {
-        e.style = "";
         e.marker.addTo(map);
+        return true;
       } else {
-        e.style = "hidden";
         e.marker.remove();
+        return false;
       }
-      return e;
     });
-    setMarkers(filter);
+    setMarkers2(filter);
   };
 
   const toggleModalAndClose = useCallback(() => {}, []);
@@ -107,8 +110,11 @@ function Maps() {
       <div className="flex h-full">
         <div ref={mapRef} className="w-1/2 z-0 "></div>
         <div className="w-1/2">
-          <ul className={`h-full overflow-y-auto ${detailIsOpen && "hidden"}`}>
-            {markers?.map((e) => {
+          <ul
+            className={`h-full overflow-y-auto ${detailIsOpen && "hidden"}`}
+            ref={parent}
+          >
+            {markers2?.map((e) => {
               return (
                 <Card
                   data={e}
