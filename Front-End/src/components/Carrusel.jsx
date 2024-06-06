@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Card from "./CardOfInfo";
 import { infoOfApp } from "../utils/info";
+import { next2, back2 } from "../utils/icons";
 
 function Carrusel({}) {
   let [currentIndex, setCurrentIndex] = useState(0);
@@ -18,12 +19,12 @@ function Carrusel({}) {
       <div className="overflow-hidden w-full">
         <div
           className=" flex transition-transform duration-500 ml-[28%] "
-          style={{ transform: `translateX(-${currentIndex * 60}%) ` }}
+          style={{ transform: `translateX(-${currentIndex * 65}%) ` }}
         >
           {items.map((e, i) => {
             return (
               <div
-                className={`w-[60%] flex-shrink-0 ${
+                className={`w-[65%] flex-shrink-0 ${
                   currentIndex !== i && "transform scale-50"
                 } transition-transform`}
               >
@@ -45,8 +46,8 @@ function Carrusel({}) {
         </div>
       </div>
       <div className="absolute inset-0 flex">
-        <div className="h-full w-1/2 cursor-pointer " onClick={prev}></div>
-        <div className="h-full w-1/2 cursor-pointer" onClick={next}></div>
+        <div className={`h-full w-1/2 back `} onClick={prev}></div>
+        <div className="h-full w-1/2 next" onClick={next}></div>
       </div>
     </div>
   );

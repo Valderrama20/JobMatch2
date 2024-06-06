@@ -77,7 +77,7 @@ export const infoOfApp = [
   {
     img: grupo1,
     title: " Dinos que necesitas",
-    text: " Explora las categorías y cuéntanos tu necesidad. Nosotros lo compartiremos con profesionales recomendados que te ayudarán a resolverlos arreglos en tu hogar.",
+    text: " Explora las categorías y cuéntanos tu necesidad. Nosotros lo compartiremos con profesionales recomendados que te ayudarán a resolver los arreglos en tu hogar.",
   },
   {
     img: grupo2,

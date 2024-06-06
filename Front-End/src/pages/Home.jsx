@@ -16,8 +16,8 @@ function Home() {
             className="border-0 outline-none bg-transparent  w-6/12 px-3"
           />
         </div>
-        <div className="flex space-x-6 ">
-          {campanaIcon} {personIcon}
+        <div className="flex ml-5 p-2 rounded-full bg-[#004B19]">
+          {personIcon}
         </div>
       </nav>
       {/* intro*/}
