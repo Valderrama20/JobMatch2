@@ -110,10 +110,7 @@ function Maps() {
       <div className="flex h-full">
         <div ref={mapRef} className="w-1/2 z-0 "></div>
         <div className="w-1/2">
-          <ul
-            className={`h-full overflow-y-auto ${detailIsOpen && "hidden"}`}
-            ref={parent}
-          >
+          <ul className={`h-full overflow-y-auto`} ref={parent}>
             {markers2?.map((e) => {
               return (
                 <Card

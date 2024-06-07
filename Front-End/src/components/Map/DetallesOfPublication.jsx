@@ -17,9 +17,17 @@ function Details({ closeDetails, details }) {
         <button onClick={closeDetails} className="absolute font-bold right-5">
           <img src={cancel} alt="cancel" />
         </button>
-        <div className="border-b-2 border-[#004B19] flex">
+        <div className=" flex ml-12">
           <div>
-            <img src={img} alt={name} className="h-28 w-28" />
+            <img
+              src={
+                img
+                  ? img
+                  : `https://ui-avatars.com/api?name=${name}&background=004B19&color=fff&rounded=true`
+              }
+              alt=""
+              className="h-12 w-12 mx-2 "
+            />
           </div>
           <div>
             <span className="text-white text-[10px] px-2 py-0.5 bg-[#004B19]  rounded-full">
@@ -38,6 +46,7 @@ function Details({ closeDetails, details }) {
             </div>
           </div>
         </div>
+        <div className="bg-[#004B19] h-0.5"></div>
         <div className=" text-xl mb-2 pl-28">
           <p className="text-[#004B19] font-bold">Datos de Contacto:</p>
           <div className="flex items-center space-x-1">
