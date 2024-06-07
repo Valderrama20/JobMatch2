@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -23,8 +23,8 @@ export default function Login() {
         "https://jobapp-backend-6pbs.onrender.com/api/v1/users/login",
         form
       );
-      console.log(response.data);
-      navigate("/home");
+      localStorage.setItem("dataUser", JSON.stringify(response.data));
+      navigate("/");
     } catch (error) {
       alert("Algo salio mal");
       console.log(error);

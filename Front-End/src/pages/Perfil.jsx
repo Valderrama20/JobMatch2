@@ -1,32 +1,63 @@
+import { useState } from "react";
+
 function Perfil() {
+  let [infoUser, setInfoUser] = useState({});
+  let [editInfo, setEditInfo] = useState(false);
+
+  const chageEditInfo = () => {
+    setEditInfo((prev) => !prev);
+  };
   return (
-    <div className="w-screen h-screen">
-      <div className="flex flex-col h-full w-1/3 min-w-[360px] justify-center mx-auto">
-        <div className="flex flex-col items-center w-full space-y-3">
-          <div className="flex flex-col w-full text-[#257341]">
-            <p>Bienvenido a JobMatch</p>
-            <p>Selecciona la opcion que mas describa tu situacion</p>
+    <div className="bgGradient ">
+      <div className="py-10 mx-20 ">
+        <div className="relative flex space-x-2 mb-16">
+          <img
+            src={`https://ui-avatars.com/api?name=jose-Garcia&background=004B19&color=fff&rounded=true`}
+            alt="userImg"
+            className="h-14 w-14"
+          />
+          <div>
+            <h2 className="text-[#004B19] font-semibold text-3xl">Mi Perfil</h2>
+            <p className="text-[#272727] font-semibold leading-3">
+              Email: lautaror@procrew.ar
+            </p>
           </div>
-          <div className="flex w-full justify-center">
-            <div className="flex flex-col box items-center bg-[#FAFAFA] h-[160px] w-[160px] rounded-xl space-y-3 m-2 ">
-              <div className="h-2/6 text-center text-[#222325]">
-                <p>description</p>
-              </div>
-              <div className="h-4/6 flex items-end">
-                <img src="../../public/icons/carpinteria.png" alt="" />
-              </div>
-            </div>
-            <div className="flex flex-col box items-center bg-[#FAFAFA] h-[160px] w-[160px] rounded-xl space-y-3 m-2 ">
-              <div className="h-2/6 text-center text-[#222325]">
-                <p>description</p>
-              </div>
-              <div className="h-4/6 flex items-end">
-                <img src="../../public/icons/cerrajeria.png" alt="" />
-              </div>
-            </div>
+          <button className="absolute right-0">x</button>
+        </div>
+        <div className="flex space-x-2 mb-2">
+          <div className="space-y-2">
+            <input
+              type="text"
+              placeholder="Nombre"
+              className="w-full border rounded-md p-2 "
+              disabled={!editInfo}
+            />
+            <input
+              type="text"
+              placeholder="Telefono"
+              className="w-full border rounded-md p-2"
+              disabled={!editInfo}
+            />
+            <input
+              type="text"
+              placeholder="Disponibilidad"
+              className="w-full border rounded-md p-2"
+              disabled={!editInfo}
+            />
           </div>
-          <button className="bgGreen1 text-white text-center py-2 font-semibold rounded-lg w-full">
-            Postulate
+
+          <textarea
+            placeholder="Descripcion"
+            className="border w-full p-2 rounded-md"
+            disabled={!editInfo}
+          />
+        </div>
+        <div className="text-right">
+          <button
+            onClick={chageEditInfo}
+            className="bgGreen1 text-white font-semibold py-2 px-4 rounded-md"
+          >
+            {!editInfo ? "Editar Informacion" : "Guardar cambios"}
           </button>
         </div>
       </div>

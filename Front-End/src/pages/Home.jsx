@@ -4,7 +4,9 @@ import { categorys } from "../utils/info.js";
 import img4 from "../../public/images/img4.jpg";
 import MarqueeDemo from "../components/Prueba.tsx";
 import Carrusel from "../components/Carrusel.jsx";
+import { useNavigate } from "react-router-dom";
 function Home() {
+  const navigate = useNavigate();
   return (
     <div className="w-screen h-full ">
       <nav className="flex w-full  py-5 items-center space-x-5 pl-10 pr-16">
@@ -16,9 +18,12 @@ function Home() {
             className="border-0 outline-none bg-transparent  w-6/12 px-3"
           />
         </div>
-        <div className="flex ml-5 p-2 rounded-full bg-[#004B19]">
+        <button
+          onClick={() => navigate("profile/jose-garcia/1")}
+          className="flex ml-5 p-2 rounded-full bg-[#004B19]"
+        >
           {personIcon}
-        </div>
+        </button>
       </nav>
       {/* intro*/}
       <div className="flex py-20  bgGradient">

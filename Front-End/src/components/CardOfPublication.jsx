@@ -5,16 +5,24 @@ function Card({ data, focus, openDetails }) {
   let { name, img, phone } = userData;
 
   const handleWhatsAppClick = (number) => {
-    window.open(`https://wa.me/54${number}`, "_blank");
+    window.open(`https://wa.me/+54${number}`, "_blank");
   };
-
   return (
     <div
-      className={`m-5 mt-0 flex items-end space-x-3 cursor-pointer ${style}`}
+      className={`m-5 mt-0  items-center  flex space-x-2 cursor-pointer ${style}`}
     >
+      <img
+        src={
+          img
+            ? img
+            : `https://ui-avatars.com/api?name=${name}&background=004B19&color=fff&rounded=true`
+        }
+        alt="userImg"
+        className="h-20 w-20  "
+        onClick={() => focus(_id)}
+      />
       <div className="w-full">
         <div className="w-full" onClick={() => focus(_id)}>
-          <img src={img} alt="" className="h-30 w-30 pb-2 " />
           <span className="font-medium text-[10px] px-2 py-0.5 bg-[#179e443e] text-[#004B19] rounded-full">
             {category}
           </span>

@@ -75,7 +75,7 @@ export default function CreateUser({ changeForm }) {
           name="password"
           value={form.password}
           placeholder="Password"
-          type="password"
+          type="Password"
           onChange={changeInput}
           className="bgGray border-0 rounded-md outline-noneh h-10 px-2 outline-gray-200"
           required
@@ -84,7 +84,7 @@ export default function CreateUser({ changeForm }) {
           type="submit"
           className="bgGreen1 text-white text-center py-2 font-semibold rounded-lg outline-gray-200"
         >
-          Crear
+          Crear usuario
         </button>
       </form>
     </div>

@@ -12,10 +12,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<PerfilPage />} />
+        <Route path="/profile/:name/:id" element={<PerfilPage />} />
         <Route path="/post" element={<h1>Post</h1>} />
         <Route path="/map/:category" element={<Maps />} />
       </Routes>
