@@ -16,11 +16,12 @@ app.use(helmet({
 
 app.use('/api/v1',router);
 
+app.use(errorHandler)
 
 app.get('/', (req, res) => {
     return res.send("Welcome to Jobamatch");
 })
 
-app.use(errorHandler)
+
 
 module.exports = app;
