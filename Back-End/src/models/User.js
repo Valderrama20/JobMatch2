@@ -30,7 +30,12 @@ const User = sequelize.define('user', {
 
     rating: {
         type: DataTypes.ARRAY(DataTypes.INTEGER),
-        allowNull: true
+        allowNull: false
+    },
+
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
 
     password: {
