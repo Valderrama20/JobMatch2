@@ -9,14 +9,15 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
+app.use(cors());
 app.use(helmet({
     crossOriginResourcePolicy: false,
 }));
-app.use(cors());
 
-app.use(router);
+app.use('/api/v1',router);
+
 app.get('/', (req, res) => {
-    return res.send("Welcome to Jobapp_nc");
+    return res.send("Welcome to Jobamatch_nc");
 })
 
 app.use(errorHandler)
