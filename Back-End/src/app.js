@@ -16,8 +16,9 @@ app.use(helmet({
 
 app.use('/api/v1',router);
 
+
 app.get('/', (req, res) => {
-    return res.send("Welcome to Jobamatch_nc");
+    return res.send("Welcome to Jobamatch");
 })
 
 app.use(errorHandler)
