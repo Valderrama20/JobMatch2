@@ -4,10 +4,12 @@ import { useAtom } from "jotai";
 import { userAtom } from "../context/atoms";
 import axios from "axios";
 import { apiUrl } from "../utils/info";
+import { useNavigate } from "react-router-dom";
 function Perfil() {
   let [infoUser, setInfoUser] = useState({});
   let [editInfo, setEditInfo] = useState(false);
   let [openModal, setOpenModal] = useState(false);
+  let navigation = useNavigate();
   let [userLocal, setUserLocal] = useState({
     name: "",
     phone: "",
@@ -21,6 +23,9 @@ function Perfil() {
   let [user, setUser] = useAtom(userAtom);
 
   useEffect(() => {
+    if (!user) {
+      navigation("/login");
+    }
     let updateUserLocal = { ...userLocal };
     for (let key in user.user) {
       if (updateUserLocal[key] !== undefined) {
