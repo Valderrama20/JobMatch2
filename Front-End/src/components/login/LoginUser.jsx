@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 import { json, useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
+import { userAtom } from "../../context/atoms";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [user, setUser] = useAtom(userAtom);
 
   let [form, setForm] = useState({
     email: "",
@@ -13,7 +16,6 @@ export default function Login() {
   const changeInput = (e) => {
     let { value, name } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-    console.log(form);
   };
 
   const loginUser = async (e) => {
@@ -23,11 +25,11 @@ export default function Login() {
         "https://jobapp-backend-6pbs.onrender.com/api/v1/users/login",
         form
       );
-      localStorage.setItem("dataUser", JSON.stringify(response.data));
+      setUser(response.data);
       navigate("/");
     } catch (error) {
       alert("Algo salio mal");
-      console.log(error);
+      console.error(error);
     }
   };
 
