@@ -22,12 +22,11 @@ export default function CreateUser({ changeForm }) {
 
   const createUser = async (e) => {
     e.preventDefault();
-    setForm((prev) => ({
-      ...prev,
-      img: `https://ui-avatars.com/api?name=${prev.name}&background=004B19&color=fff&rounded=true&size=48`,
-    }));
+    let copi = { ...form };
+    copi.img = `https://ui-avatars.com/api?name=${copi.name}&background=004B19&color=fff&rounded=true&size=48`;
+
     try {
-      let response = await axios.post(`${apiUrl}/users`, form);
+      let response = await axios.post(`${apiUrl}/users`, copi);
       console.log("tofo bien");
       changeForm();
     } catch (error) {
