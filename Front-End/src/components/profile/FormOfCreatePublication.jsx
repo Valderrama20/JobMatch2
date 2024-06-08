@@ -1,12 +1,37 @@
+import { useState } from "react";
 import { cancel } from "../../utils/icons";
-import { categorys, zonas_caba } from "../../utils/info";
+import { apiUrl, categorys, zonas_caba } from "../../utils/info";
 import AutocompleteComponent from "../Map/Autocomplete";
+import axios from "axios";
 
-export default function Form() {
+export default function Form({ close, userId }) {
+  let [form, setForm] = useState({
+    latitude: 0,
+    longitude: 0,
+    description: "",
+    category: "",
+    zone: "",
+    userId: userId,
+  });
+
+  const changeInput = (e) => {
+    let { value, name } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const createPublication = async (e) => {
+    e.preventDefault();
+    let create = await axios.post(`${apiUrl}/publications`, form);
+    console.log(create.data);
+  };
+
   return (
     <div className="absolute inset-0 flex justify-center items-center ">
       <form
-        action=""
+        onSubmit={createPublication}
         className="z-50 flex flex-col bg-white px-10 py-5 w-1/2 space-y-2 rounded-lg"
       >
         <div className="flex justify-between items-center">
@@ -14,13 +39,20 @@ export default function Form() {
             Crear publicación
           </h2>
 
-          <img src={cancel} alt="cancelIcon" className="" />
+          <img src={cancel} alt="cancelIcon" onClick={() => close(false)} />
         </div>
         <div className="flex flex-col">
           <label htmlFor="zone" className="font-semibold mt-4">
             Zona
           </label>
-          <select name="zone" id="zone" className=" bgGray p-2 rounded-md">
+          <select
+            onChange={changeInput}
+            name="zone"
+            id="zone"
+            className=" bgGray p-2 rounded-md"
+            required
+          >
+            <option value="">Seleccione una zona</option>
             {zonas_caba.map((e) => {
               return <option value={e}>{e}</option>;
             })}
@@ -31,23 +63,33 @@ export default function Form() {
             Descripcion
           </label>
           <textarea
+            onChange={changeInput}
             name="description"
             id="description"
             className="bgGray p-2  outline-none min-h-20 rounded-md"
             placeholder="Ej: Expertos en cont..."
+            required
           ></textarea>
         </div>
         <div>
           <label htmlFor="direction" className="font-semibold">
             Direccion
           </label>
-          <AutocompleteComponent />
+          <AutocompleteComponent setForm={setForm} form={form} />
         </div>
         <div className="flex flex-col">
           <label htmlFor="category" className="font-semibold">
             Categoria
           </label>
-          <select name="category" id="category" className="bgGray p-2 mb-5">
+
+          <select
+            onChange={changeInput}
+            name="category"
+            id="category"
+            className="bgGray p-2 mb-5"
+            required
+          >
+            <option value="">Seleccione una categoria</option>
             {categorys.map((e) => {
               return <option value={e.category}>{e.category}</option>;
             })}

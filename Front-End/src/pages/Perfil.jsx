@@ -7,6 +7,7 @@ import { apiUrl } from "../utils/info";
 function Perfil() {
   let [infoUser, setInfoUser] = useState({});
   let [editInfo, setEditInfo] = useState(false);
+  let [openModal, setOpenModal] = useState(false);
   let [userLocal, setUserLocal] = useState({
     name: "",
     phone: "",
@@ -116,8 +117,22 @@ function Perfil() {
             {!editInfo ? "Editar Informacion" : "Guardar cambios"}
           </button>
         </div>
+        <div>
+          <h3 className="text-[#004B19] font-semibold text-3xl mb-2">
+            Publicaciones
+          </h3>
+          <div className="border min-h-[200px] rounded-md mb-2"></div>
+          <div className="text-right">
+            <button
+              onClick={() => setOpenModal(true)}
+              className="bgGreen1 text-white font-semibold py-2 px-4 rounded-md"
+            >
+              Crear publicacion
+            </button>
+          </div>
+        </div>
       </div>
-      {/* <Form /> */}
+      {openModal && <Form close={setOpenModal} userId={userLocal.id} />}
     </div>
   );
 }
