@@ -1,9 +1,4 @@
-import { useAtom } from "jotai";
-import { countAtom } from "../context/atoms";
-
 function Landing() {
-  const [count, setCount] = useAtom(countAtom);
-
   return (
     <div className=" bg-black flex w-screen h-screen justify-center items-center ">
       <div className=" text-white text-center">

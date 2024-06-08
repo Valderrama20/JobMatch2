@@ -5,19 +5,15 @@ import img4 from "../../public/images/img4.jpg";
 import MarqueeDemo from "../components/Prueba.tsx";
 import Carrusel from "../components/Carrusel.jsx";
 import { useNavigate } from "react-router-dom";
+import Autocomplete from "../components/AutocompleteInput.jsx";
 function Home() {
   const navigate = useNavigate();
   return (
     <div className="w-screen h-full ">
       <nav className="flex w-full  py-5 items-center space-x-5 pl-10 pr-16">
         <h1 className="text-black font-extrabold text-xl">JOBMATCH</h1>
-        <div className="flex w-full bg-[#FFF]  py-2 border-2 rounded-md  text-[#625F5F]">
-          <input
-            type="text"
-            placeholder="qué servicio necesitas para tu casa hoy? Ej: Carpintero"
-            className="border-0 outline-none bg-transparent  w-6/12 px-3"
-          />
-        </div>
+        <Autocomplete />
+
         <button
           onClick={() => navigate("profile/jose-garcia/1")}
           className="flex ml-5 p-2 rounded-full bg-[#004B19]"
@@ -37,7 +33,10 @@ function Home() {
             del hogar, desde reparaciones menores hasta grandes proyectos, o
             regístrate para ofrecer tus servicios.
           </p>
-          <button className="bg-[#FF3D00]  my-10 w-full py-3 text-white text-xl font-semibold rounded-lg">
+          <button
+            onClick={() => navigate("/login")}
+            className="bg-[#FF3D00]  my-10 w-full py-3 text-white text-xl font-semibold rounded-lg transform hover:scale-105 transition-transform "
+          >
             Registrate como profesional
           </button>
         </div>
