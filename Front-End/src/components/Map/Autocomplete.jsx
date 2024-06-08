@@ -35,19 +35,13 @@ const AutocompleteComponent = () => {
       >
         <input
           type="text"
-          placeholder="Enter address"
+          placeholder="Ej: Miralla 1224"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          style={{ width: "90%", height: "40px" }}
+          className="bgGray w-full p-2 rounded-md outline-none"
         />
       </Autocomplete>
-      {location.latitude && location.longitude && (
-        <div>
-          <h3>Coordinates:</h3>
-          <p>Latitude: {location.latitude}</p>
-          <p>Longitude: {location.longitude}</p>
-        </div>
-      )}
+      {location.latitude && location.longitude && "todo bien"}
     </LoadScript>
   );
 };

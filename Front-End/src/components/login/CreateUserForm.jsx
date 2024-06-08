@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { apiUrl } from "../../utils/info";
 
 export default function CreateUser({ changeForm }) {
   let [form, setForm] = useState({
@@ -10,6 +11,7 @@ export default function CreateUser({ changeForm }) {
     img: "",
     rating: [],
     password: "",
+    description: "",
   });
 
   const changeInput = (e) => {
@@ -25,10 +27,7 @@ export default function CreateUser({ changeForm }) {
       img: `https://ui-avatars.com/api?name=${prev.name}&background=004B19&color=fff&rounded=true&size=48`,
     }));
     try {
-      let response = await axios.post(
-        "https://jobapp-backend-6pbs.onrender.com/api/v1/users",
-        form
-      );
+      let response = await axios.post(`${apiUrl}/users`, form);
       console.log("tofo bien");
       changeForm();
     } catch (error) {

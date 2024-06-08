@@ -21,6 +21,7 @@ import avatar from "../../public/images/avatar.png";
 import avatar2 from "../../public/images/avatar2.png";
 import avatar3 from "../../public/images/avatar3.png";
 
+export const apiUrl = "https://jobapp-backend-5upd.onrender.com/api/v1";
 export let categorys = [
   {
     icon: plomeria,
@@ -113,6 +114,57 @@ export const calificationsOfApp = [
       "JobMatch me permitió expandir mi negocio. Ahora tengo una base constante de clientes y puedo gestionar mis trabajos de manera más eficiente.",
     calification: 0,
   },
+];
+
+export const zonas_caba = [
+  "Agronomía",
+  "Almagro",
+  "Balvanera",
+  "Barracas",
+  "Belgrano",
+  "Boedo",
+  "Caballito",
+  "Chacarita",
+  "Coghlan",
+  "Colegiales",
+  "Constitución",
+  "Flores",
+  "Floresta",
+  "La Boca",
+  "La Paternal",
+  "Liniers",
+  "Mataderos",
+  "Monte Castro",
+  "Monserrat",
+  "Nueva Pompeya",
+  "Núñez",
+  "Palermo",
+  "Parque Avellaneda",
+  "Parque Chacabuco",
+  "Parque Chas",
+  "Parque Patricios",
+  "Puerto Madero",
+  "Recoleta",
+  "Retiro",
+  "Saavedra",
+  "San Cristóbal",
+  "San Nicolás",
+  "San Telmo",
+  "Vélez Sársfield",
+  "Versalles",
+  "Villa Crespo",
+  "Villa del Parque",
+  "Villa Devoto",
+  "Villa Gral. Mitre",
+  "Villa Lugano",
+  "Villa Luro",
+  "Villa Ortúzar",
+  "Villa Pueyrredón",
+  "Villa Real",
+  "Villa Riachuelo",
+  "Villa Santa Rita",
+  "Villa Soldati",
+  "Villa Urquiza",
 ];
 
 export const publicaciones = {

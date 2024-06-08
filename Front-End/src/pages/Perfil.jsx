@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Form from "../components/profile/FormOfCreatePublication";
 
 function Perfil() {
   let [infoUser, setInfoUser] = useState({});
@@ -61,6 +62,7 @@ function Perfil() {
           </button>
         </div>
       </div>
+      <Form />
     </div>
   );
 }

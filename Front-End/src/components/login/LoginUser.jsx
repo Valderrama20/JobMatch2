@@ -3,6 +3,7 @@ import { useState } from "react";
 import { json, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { userAtom } from "../../context/atoms";
+import { apiUrl } from "../../utils/info";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -21,10 +22,7 @@ export default function Login() {
   const loginUser = async (e) => {
     e.preventDefault();
     try {
-      let response = await axios.post(
-        "https://jobapp-backend-6pbs.onrender.com/api/v1/users/login",
-        form
-      );
+      let response = await axios.post(`${apiUrl}/users/login`, form);
       setUser(response.data);
       navigate("/");
     } catch (error) {
