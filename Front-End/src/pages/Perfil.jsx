@@ -25,6 +25,7 @@ function Perfil() {
   useEffect(() => {
     if (!user) {
       navigation("/login");
+      return;
     }
     let updateUserLocal = { ...userLocal };
     for (let key in user.user) {
