@@ -50,6 +50,7 @@ body {
     background: linear-gradient(180deg, rgba(37, 115, 65, 0.10) 6.72%, rgba(250, 250, 250, 0.10) 103.48%);
 }
 
+
 .back {
     cursor: url("./utils/icons/back.png") 16 16, auto;
 }
