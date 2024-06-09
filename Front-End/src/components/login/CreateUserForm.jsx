@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { methods } from "../../utils/info";
 import { fetchDataApi } from "../../services/apiService";
+import { Toaster, toast } from "sonner";
 
-export default function CreateUser({ changeForm }) {
+export default function CreateUser({ changeForm, loading }) {
   let [form, setForm] = useState({
     name: "",
     email: "",
@@ -17,17 +18,22 @@ export default function CreateUser({ changeForm }) {
   const changeInput = (e) => {
     let { value, name } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-    console.log(form);
   };
 
   const createUser = async (e) => {
     e.preventDefault();
+    loading(true);
     let userData = { ...form };
     userData.img = `https://ui-avatars.com/api?name=${userData.name}&background=004B19&color=fff&rounded=true&size=48`;
 
     let newUser = await fetchDataApi("/users", methods.POST, userData);
     if (newUser.ok) {
       changeForm();
+      loading(false);
+      toast.success("Usuario creado");
+    } else {
+      loading(false);
+      toast.error("Algo salio mal");
     }
   };
 

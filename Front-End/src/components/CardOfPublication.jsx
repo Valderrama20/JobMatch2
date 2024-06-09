@@ -29,7 +29,7 @@ function Card({ data, focus, openDetails }) {
           <div className="flex justify-between ">
             <div className=" font-bold text-xl">{name}</div>
             <div className="flex items-center">
-              5.0 <img src={star} alt="" className="ml-1" />
+              5.0 <img src={star} alt="" className="ml-1 h-6" />
             </div>
           </div>
           <p className="font-medium text-base leading-3">{zone}</p>
@@ -53,7 +53,7 @@ function Card({ data, focus, openDetails }) {
               whatsapp
             </button>
           </div>
-          <img src={favorite} alt="" className="h-5 w-5" />
+          {/* <img src={favorite} alt="" className="h-5 w-5" /> */}
         </div>
       </div>
     </div>
