@@ -1,14 +1,15 @@
 import { alarm, star, phone, mail2, chat, cancel } from "../../utils/icons";
 function Details({ closeDetails, details }) {
   let { zone, user, description, category } = details;
-  let { name, img, phone: phone2, mail, availability, rating } = user;
+  let { name, img, phone: phone2, email, availability, rating } = user;
 
   const calculateRating = (arr) => {
+    if (arr.length < 1) return 0;
     return Math.floor(arr.reduce((a, b) => a + b, 0) / arr.length);
   };
 
-  const handleEmailClick = (mail) => {
-    window.open(`mailto:${mail}`, "_blank");
+  const handleEmailClick = (email) => {
+    window.open(`mailto:${email}`, "_blank");
   };
 
   return (
@@ -55,7 +56,7 @@ function Details({ closeDetails, details }) {
           </div>
           <div className="flex items-center space-x-1">
             <img src={mail2} alt="mail2" className="h-5" />
-            <p>Email: {mail}</p>
+            <p>Email: {email}</p>
           </div>
         </div>
         <div className="pl-28">
@@ -70,7 +71,7 @@ function Details({ closeDetails, details }) {
           <div className=" flex justify-between items-center">
             <div className="flex">
               <span className="text-4xl font-medium ">
-                5/{calculateRating(rating)}
+                {calculateRating(rating)}/5
               </span>
               <div className="relative">
                 <div className="flex ">
@@ -91,7 +92,7 @@ function Details({ closeDetails, details }) {
               </div>
             </div>
             <button
-              onClick={() => handleEmailClick(mail)}
+              onClick={() => handleEmailClick(email)}
               className="flex  items-center font-medium text-lg  px-6 rounded-lg bg-[#00551E] text-white"
             >
               Pedir Cotizacion

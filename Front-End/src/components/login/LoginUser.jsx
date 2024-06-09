@@ -5,7 +5,7 @@ import { userAtom } from "../../context/atoms";
 import { fetchDataApi } from "../../services/apiService";
 import { methods } from "../../utils/info";
 
-export default function Login() {
+export default function Login({ loading }) {
   const navigate = useNavigate();
   const [user, setUser] = useAtom(userAtom);
 
@@ -20,8 +20,8 @@ export default function Login() {
   };
 
   const loginUser = async (e) => {
+    loading(true);
     e.preventDefault();
-
     let loginUser = await fetchDataApi("/users/login", methods.POST, form);
     if (loginUser.ok) {
       setUser(loginUser.data);

@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { fetchDataApi } from "../services/apiService";
 import { methods } from "../utils/info";
 import { Toaster, toast } from "sonner";
+import Loading from "../components/Loading";
 function Perfil() {
-  let [editInfo, setEditInfo] = useState(false);
-  let [openModal, setOpenModal] = useState(false);
-  let navigation = useNavigate();
-  let [user, setUser] = useAtom(userAtom);
+  const [editInfo, setEditInfo] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const navigation = useNavigate();
+  const [user, setUser] = useAtom(userAtom);
+  const [isLoading, setIsLoading] = useState(false);
 
   let [userLocal, setUserLocal] = useState({
     name: "",
@@ -52,6 +54,8 @@ function Perfil() {
     if (putUser.ok) {
       toast.success("Actualizado correctamente");
       setUser({ ...user, user: putUser.data });
+    } else {
+      toast.error("No se pudo actualizar tu usuario");
     }
 
     chageEditInfo();
@@ -137,8 +141,15 @@ function Perfil() {
           </div>
         </div>
       </div>
-      {openModal && <Form close={setOpenModal} userId={userLocal.id} />}
+      {openModal && (
+        <Form
+          close={setOpenModal}
+          userId={userLocal.id}
+          loading={setIsLoading}
+        />
+      )}
       <Toaster richColors />
+      {isLoading && <Loading />}
     </div>
   );
 }
