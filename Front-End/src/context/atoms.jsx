@@ -18,3 +18,4 @@ const createPersistedAtom = (key, initialValue) => {
 };
 
 export const userAtom = createPersistedAtom("user", null);
+export const publicationsAtom = createPersistedAtom("publications", null);

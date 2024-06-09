@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { cancel } from "../../utils/icons";
-import { apiUrl, categorys, zonas_caba } from "../../utils/info";
+import { categorys, methods, zonas_caba } from "../../utils/info";
 import AutocompleteComponent from "../Map/Autocomplete";
-import axios from "axios";
+import { fetchDataApi } from "../../services/apiService";
 
 export default function Form({ close, userId }) {
   let [form, setForm] = useState({
@@ -24,8 +24,11 @@ export default function Form({ close, userId }) {
 
   const createPublication = async (e) => {
     e.preventDefault();
-    let create = await axios.post(`${apiUrl}/publications`, form);
-    console.log(create.data);
+
+    let createPost = await fetchDataApi("/publications", methods.POST, form);
+    if (createPost.ok) {
+      console.log("Creado correctamente");
+    }
   };
 
   return (

@@ -21,7 +21,13 @@ import avatar from "../../public/images/avatar.png";
 import avatar2 from "../../public/images/avatar2.png";
 import avatar3 from "../../public/images/avatar3.png";
 
-export const apiUrl = "https://jobapp-backend-5upd.onrender.com/api/v1";
+export const methods = {
+  GET: "get",
+  POST: "post",
+  PUT: "put",
+  DELETE: "delete",
+};
+
 export let categorys = [
   {
     icon: plomeria,
