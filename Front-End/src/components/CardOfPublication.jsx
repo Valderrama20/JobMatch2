@@ -1,8 +1,8 @@
 import { favorite, mail, call, star } from "../utils/icons";
 
 function Card({ data, focus, openDetails }) {
-  let { description, zone, category, userData, style, _id } = data;
-  let { name, img, phone } = userData;
+  let { description, zone, category, user, style, id } = data;
+  let { name, img, phone } = user;
 
   const handleWhatsAppClick = (number) => {
     window.open(`https://wa.me/+54${number}`, "_blank");
@@ -19,10 +19,10 @@ function Card({ data, focus, openDetails }) {
         }
         alt="userImg"
         className="h-20 w-20  "
-        onClick={() => focus(_id)}
+        onClick={() => focus(id)}
       />
       <div className="w-full">
-        <div className="w-full" onClick={() => focus(_id)}>
+        <div className="w-full" onClick={() => focus(id)}>
           <span className="font-medium text-[10px] px-2 py-0.5 bg-[#179e443e] text-[#004B19] rounded-full">
             {category}
           </span>
@@ -40,7 +40,7 @@ function Card({ data, focus, openDetails }) {
           <div className="text-sm font-semibold flex space-x-2">
             <button
               className="bg-[#004B19] text-white   px-3 py-1.5 rounded-lg flex items-center "
-              onClick={() => openDetails(_id)}
+              onClick={() => openDetails(id)}
             >
               Detalles
             </button>

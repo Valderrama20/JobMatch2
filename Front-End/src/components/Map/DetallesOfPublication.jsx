@@ -1,7 +1,7 @@
 import { alarm, star, phone, mail2, chat, cancel } from "../../utils/icons";
 function Details({ closeDetails, details }) {
-  let { zone, userData, description, category } = details;
-  let { name, img, phone: phone2, mail, availability, rating } = userData;
+  let { zone, user, description, category } = details;
+  let { name, img, phone: phone2, mail, availability, rating } = user;
 
   const calculateRating = (arr) => {
     return Math.floor(arr.reduce((a, b) => a + b, 0) / arr.length);
