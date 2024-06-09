@@ -7,7 +7,7 @@ export const fetchDataApi = async (path, method, body = null) => {
   let api = axios.create({
     baseURL: "https://jobapp-backend-5upd.onrender.com/api/v1",
     headers: {
-      Authorization: `Bearer ${user.token}`,
+      Authorization: `Bearer ${user.token || null}`,
       "Content-Type": "application/json",
     },
   });
