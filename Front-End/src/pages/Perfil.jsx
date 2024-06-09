@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 import Form from "../components/profile/FormOfCreatePublication";
 import { useAtom } from "jotai";
 import { userAtom } from "../context/atoms";
-import axios from "axios";
-import { apiUrl } from "../utils/info";
 import { useNavigate } from "react-router-dom";
+import { fetchDataApi } from "../services/apiService";
+import { methods } from "../utils/info";
+import { Toaster, toast } from "sonner";
 function Perfil() {
-  let [infoUser, setInfoUser] = useState({});
   let [editInfo, setEditInfo] = useState(false);
   let [openModal, setOpenModal] = useState(false);
   let navigation = useNavigate();
+  let [user, setUser] = useAtom(userAtom);
+
   let [userLocal, setUserLocal] = useState({
     name: "",
     phone: "",
@@ -20,12 +22,15 @@ function Perfil() {
     id: "",
   });
 
-  let [user, setUser] = useAtom(userAtom);
-
   useEffect(() => {
     if (!user) {
       navigation("/login");
+      return;
     }
+    updateUserLocal();
+  }, [user]);
+
+  const updateUserLocal = () => {
     let updateUserLocal = { ...userLocal };
     for (let key in user.user) {
       if (updateUserLocal[key] !== undefined) {
@@ -33,26 +38,21 @@ function Perfil() {
       }
     }
     setUserLocal(updateUserLocal);
-  }, [user]);
-
-  const chageEditInfo = () => {
-    setEditInfo((prev) => !prev);
   };
+
+  const chageEditInfo = () => setEditInfo((prev) => !prev);
+
   const updateUserApi = async () => {
-    const headers = {
-      Authorization: `Bearer ${user.token}`,
-    };
-    try {
-      let update = await axios.put(
-        `${apiUrl}/users/${userLocal.id}`,
-        userLocal,
-        {
-          headers,
-        }
-      );
-      console.log({ ...user, user: update.data });
-      setUser({ ...user, user: update.data });
-    } catch (error) {}
+    let putUser = await fetchDataApi(
+      `/users/${userLocal.id}`,
+      methods.PUT,
+      userLocal
+    );
+
+    if (putUser.ok) {
+      toast.success("Actualizado correctamente");
+      setUser({ ...user, user: putUser.data });
+    }
 
     chageEditInfo();
   };
@@ -138,6 +138,7 @@ function Perfil() {
         </div>
       </div>
       {openModal && <Form close={setOpenModal} userId={userLocal.id} />}
+      <Toaster richColors />
     </div>
   );
 }
