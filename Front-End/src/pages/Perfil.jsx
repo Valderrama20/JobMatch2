@@ -14,6 +14,7 @@ function Perfil() {
   const [user, setUser] = useAtom(userAtom);
   const [isLoading, setIsLoading] = useState(false);
 
+
   let [userLocal, setUserLocal] = useState({
     name: "",
     phone: "",
@@ -29,10 +30,12 @@ function Perfil() {
       navigation("/login");
       return;
     }
+
     updateUserLocal();
   }, [user]);
 
   const updateUserLocal = () => {
+
     let updateUserLocal = { ...userLocal };
     for (let key in user.user) {
       if (updateUserLocal[key] !== undefined) {
