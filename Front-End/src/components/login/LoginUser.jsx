@@ -1,11 +1,11 @@
-import axios from "axios";
 import { useState } from "react";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { userAtom } from "../../context/atoms";
-import { apiUrl } from "../../utils/info";
+import { fetchDataApi } from "../../services/apiService";
+import { methods } from "../../utils/info";
 
-export default function Login() {
+export default function Login({ loading }) {
   const navigate = useNavigate();
   const [user, setUser] = useAtom(userAtom);
 
@@ -20,14 +20,12 @@ export default function Login() {
   };
 
   const loginUser = async (e) => {
+    loading(true);
     e.preventDefault();
-    try {
-      let response = await axios.post(`${apiUrl}/users/login`, form);
-      setUser(response.data);
+    let loginUser = await fetchDataApi("/users/login", methods.POST, form);
+    if (loginUser.ok) {
+      setUser(loginUser.data);
       navigate("/");
-    } catch (error) {
-      alert("Algo salio mal");
-      console.error(error);
     }
   };
 

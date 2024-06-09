@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { cancel } from "../../utils/icons";
-import { apiUrl, categorys, zonas_caba } from "../../utils/info";
+import { categorys, methods, zonas_caba } from "../../utils/info";
 import AutocompleteComponent from "../Map/Autocomplete";
-import axios from "axios";
+import { fetchDataApi } from "../../services/apiService";
+import { toast } from "sonner";
 
-export default function Form({ close, userId }) {
+export default function Form({ close, userId, loading }) {
   let [form, setForm] = useState({
     latitude: 0,
     longitude: 0,
@@ -23,16 +24,25 @@ export default function Form({ close, userId }) {
   };
 
   const createPublication = async (e) => {
+    loading(true);
     e.preventDefault();
-    let create = await axios.post(`${apiUrl}/publications`, form);
-    console.log(create.data);
+
+    let createPost = await fetchDataApi("/publications", methods.POST, form);
+    if (createPost.ok) {
+      toast.success("Publicacion creada");
+      loading(false);
+      close();
+    } else {
+      loading(false);
+      toast.error("Algo salio mal");
+    }
   };
 
   return (
     <div className="absolute inset-0 flex justify-center items-center ">
       <form
         onSubmit={createPublication}
-        className="z-50 flex flex-col bg-white px-10 py-5 w-1/2 space-y-2 rounded-lg"
+        className="z-40 flex flex-col bg-white px-10 py-5 w-1/2 space-y-2 rounded-lg"
       >
         <div className="flex justify-between items-center">
           <h2 className="text-4xl font-bold text-[#004B19]">
@@ -99,7 +109,7 @@ export default function Form({ close, userId }) {
           Publicar
         </button>
       </form>
-      <div className="fixed inset-0 bg-black opacity-40 z-40"></div>
+      <div className="fixed inset-0 bg-black opacity-40 z-30"></div>
     </div>
   );
 }

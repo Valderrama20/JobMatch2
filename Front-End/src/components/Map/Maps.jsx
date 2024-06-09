@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import Card from "../CardOfPublication";
-import { publicaciones } from "../../utils/info";
+import { methods, publicaciones } from "../../utils/info";
 import Details from "./DetallesOfPublication";
 import { useParams } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useAtom } from "jotai";
+import { publicationsAtom } from "../../context/atoms";
+import { fetchDataApi } from "../../services/apiService";
 
 function Maps() {
-  // AIzaSyDRu5QEijvI4K2Vzl53M-jWz79EtcVwgMY api de google cloud
-  // center of Buenos aires { lat: -34.6037, lng: -58.3816 }
   let { category } = useParams();
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
@@ -17,32 +18,49 @@ function Maps() {
   const [detailIsOpen, setDetailIsOpen] = useState(false);
   const [userDetails, setUserDetails] = useState({});
   const [parent] = useAutoAnimate();
+  const [publications, setPublications] = useAtom(publicationsAtom);
 
   useEffect(() => {
+    getPublicationsApi();
+    openMap();
+  }, []);
+
+  let getPublicationsApi = async () => {
+    let apiPublications = await fetchDataApi("/publications", methods.GET);
+    if (apiPublications.ok) setPublications(apiPublications.data);
+    console.log(apiPublications.data);
+  };
+
+  let openMap = () => {
     const map = new mapboxgl.Map({
       container: mapRef.current,
       center: { lng: -58.4507, lat: -34.6061 },
       zoom: 10.5,
       style: "mapbox://styles/mapbox/streets-v11",
     });
-
-    let markers = publicaciones[category].map((e) => {
-      let marker = new mapboxgl.Marker({ color: "green" })
-        .setLngLat([e.longitude, e.latitude])
-        .addTo(map);
-
-      return {
-        ...e,
-        style: "",
-        marker: marker,
-      };
-    });
-
     setMap(map);
+  };
+
+  useEffect(() => {
+    if (!map || !publications) return;
+
+    let markers = publications
+      .filter((e) => e.category === category)
+      .map((e) => {
+        let marker = new mapboxgl.Marker({ color: "green" })
+          .setLngLat([e.longitude, e.latitude])
+          .addTo(map);
+
+        return {
+          ...e,
+          marker: marker,
+        };
+      });
+
+    console.log(markers);
     setMarkers(markers);
     setMarkers2(markers);
-    return () => map.remove();
-  }, []);
+  }, [publications, map]);
 
   const filterPublications = (e) => {
     let zone = e.target.value;
@@ -63,7 +81,7 @@ function Maps() {
 
   const focus = useCallback(
     (id) => {
-      let publication = markers.find((e) => e._id === id);
+      let publication = markers.find((e) => e.id === id);
       map.flyTo({
         center: publication.marker.getLngLat(),
         zoom: 14,
@@ -77,7 +95,7 @@ function Maps() {
 
   let openDetailsAndClose = (id = null) => {
     if (id) {
-      let publication = markers.find((e) => e._id === id);
+      let publication = markers.find((e) => e.id === id);
       setUserDetails(publication);
     }
 

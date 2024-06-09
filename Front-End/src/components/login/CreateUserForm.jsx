@@ -1,8 +1,9 @@
-import axios from "axios";
 import { useState } from "react";
-import { apiUrl } from "../../utils/info";
+import { methods } from "../../utils/info";
+import { fetchDataApi } from "../../services/apiService";
+import { Toaster, toast } from "sonner";
 
-export default function CreateUser({ changeForm }) {
+export default function CreateUser({ changeForm, loading }) {
   let [form, setForm] = useState({
     name: "",
     email: "",
@@ -17,21 +18,22 @@ export default function CreateUser({ changeForm }) {
   const changeInput = (e) => {
     let { value, name } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-    console.log(form);
   };
 
   const createUser = async (e) => {
     e.preventDefault();
-    let copi = { ...form };
-    copi.img = `https://ui-avatars.com/api?name=${copi.name}&background=004B19&color=fff&rounded=true&size=48`;
+    loading(true);
+    let userData = { ...form };
+    userData.img = `https://ui-avatars.com/api?name=${userData.name}&background=004B19&color=fff&rounded=true&size=48`;
 
-    try {
-      let response = await axios.post(`${apiUrl}/users`, copi);
-      console.log("tofo bien");
+    let newUser = await fetchDataApi("/users", methods.POST, userData);
+    if (newUser.ok) {
       changeForm();
-    } catch (error) {
-      alert("algo salio mal");
-      console.log(error);
+      loading(false);
+      toast.success("Usuario creado");
+    } else {
+      loading(false);
+      toast.error("Algo salio mal");
     }
   };
 
