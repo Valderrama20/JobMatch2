@@ -1,12 +1,27 @@
 import { personIcon, campanaIcon } from "../../public/svg.jsx";
 import Card from "../components/CardOfCategori.jsx";
-import { categorys } from "../utils/info.js";
+import { categorys, methods } from "../utils/info.js";
 import img4 from "../../public/images/img4.jpg";
 import MarqueeDemo from "../components/Prueba.tsx";
 import Carrusel from "../components/Carrusel.jsx";
 import { useNavigate } from "react-router-dom";
 import Autocomplete from "../components/AutocompleteInput.jsx";
+import { useEffect } from "react";
+import { publicationsAtom } from "../context/atoms.jsx";
+import { useAtom } from "jotai";
+import { fetchDataApi } from "../services/apiService.js";
 function Home() {
+  const [publications, setPublications] = useAtom(publicationsAtom);
+
+  useEffect(() => {
+    getPublicationsApi();
+  }, []);
+
+  let getPublicationsApi = async () => {
+    let apiPublications = await fetchDataApi("/publications", methods.GET);
+    if (apiPublications.ok) setPublications(apiPublications.data);
+  };
+
   const navigate = useNavigate();
   return (
     <div className="w-screen h-full ">

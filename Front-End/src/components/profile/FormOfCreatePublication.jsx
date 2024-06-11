@@ -5,14 +5,14 @@ import AutocompleteComponent from "../Map/Autocomplete";
 import { fetchDataApi } from "../../services/apiService";
 import { toast } from "sonner";
 
-export default function Form({ close, userId, loading }) {
+export default function Form({ close, user, loading, setPublications }) {
   let [form, setForm] = useState({
     latitude: 0,
     longitude: 0,
     description: "",
     category: "",
     zone: "",
-    userId: userId,
+    userId: user.id,
   });
 
   const changeInput = (e) => {
@@ -28,10 +28,12 @@ export default function Form({ close, userId, loading }) {
     e.preventDefault();
 
     let createPost = await fetchDataApi("/publications", methods.POST, form);
+    console.log(createPost.data);
     if (createPost.ok) {
       toast.success("Publicacion creada");
       loading(false);
       close();
+      setPublications((prev) => [...prev, { ...createPost.data, user: user }]);
     } else {
       loading(false);
       toast.error("Algo salio mal");
