@@ -1,66 +1,71 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import Card from "../CardOfPublication";
-import { methods, publicaciones } from "../../utils/info";
 import Details from "./DetallesOfPublication";
 import { useParams } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useAtom } from "jotai";
 import { publicationsAtom } from "../../context/atoms";
-import { fetchDataApi } from "../../services/apiService";
+import NoPublications from "./NoPublications";
+import Loading from "../Loading";
 
 function Maps() {
   let { category } = useParams();
-  const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState(null);
-  const [markers2, setMarkers2] = useState(null);
+  const [filteredMarkeres, setFilteredMarkeres] = useState(null);
   const [detailIsOpen, setDetailIsOpen] = useState(false);
   const [userDetails, setUserDetails] = useState({});
   const [parent] = useAutoAnimate();
   const [publications, setPublications] = useAtom(publicationsAtom);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getPublicationsApi();
-    openMap();
+    if (markers) {
+      openMap();
+    }
+  }, [markers]);
+
+  useEffect(() => {
+    let filtered = filteredPublications();
+
+    setTimeout(() => {
+      if (filtered.length) {
+        setMarkers(filtered);
+        setFilteredMarkeres(filtered);
+      }
+      setIsLoading(false);
+    }, 1000);
   }, []);
 
-  let getPublicationsApi = async () => {
-    let apiPublications = await fetchDataApi("/publications", methods.GET);
-    if (apiPublications.ok) setPublications(apiPublications.data);
-    console.log(apiPublications.data);
-  };
-
-  let openMap = () => {
-    const map = new mapboxgl.Map({
-      container: mapRef.current,
-      center: { lng: -58.4507, lat: -34.6061 },
-      zoom: 10.5,
-      style: "mapbox://styles/mapbox/streets-v11",
-    });
-    setMap(map);
-  };
-
-  useEffect(() => {
-    if (!map || !publications) return;
-
-    let markers = publications
+  let filteredPublications = () => {
+    if (!publications) return [];
+    return publications
       .filter((e) => e.category === category)
       .map((e) => {
-        let marker = new mapboxgl.Marker({ color: "green" })
-          .setLngLat([e.longitude, e.latitude])
-          .addTo(map);
+        let marker = new mapboxgl.Marker({ color: "green" }).setLngLat([
+          e.longitude,
+          e.latitude,
+        ]);
 
         return {
           ...e,
           marker: marker,
         };
       });
+  };
 
-    console.log(markers);
-    setMarkers(markers);
-    setMarkers2(markers);
-  }, [publications, map]);
+  let openMap = () => {
+    const map = new mapboxgl.Map({
+      container: "map",
+      center: { lng: -58.4507, lat: -34.6061 },
+      zoom: 10.5,
+      style: "mapbox://styles/mapbox/streets-v11",
+    });
+    markers.forEach((e) => e.marker.addTo(map));
+
+    setMap(map);
+  };
 
   const filterPublications = (e) => {
     let zone = e.target.value;
@@ -74,10 +79,8 @@ function Maps() {
         return false;
       }
     });
-    setMarkers2(filter);
+    setFilteredMarkeres(filter);
   };
-
-  const toggleModalAndClose = useCallback(() => {}, []);
 
   const focus = useCallback(
     (id) => {
@@ -90,7 +93,7 @@ function Maps() {
         essential: true,
       });
     },
-    [markers, map, toggleModalAndClose]
+    [markers, map]
   );
 
   let openDetailsAndClose = (id = null) => {
@@ -102,7 +105,9 @@ function Maps() {
     setDetailIsOpen((prev) => !prev);
   };
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : markers?.length > 0 ? (
     <div className="h-screen w-screen p-10 overflow-x-hidden">
       <p className="font-semibold text-4xl text-[#257341] mb-10">
         {category} disponibles en tu zona
@@ -116,7 +121,7 @@ function Maps() {
           className="bg-[#EBE3E35E] rounded-md py-1"
         >
           <option value="todas">Todas</option>
-          {publicaciones[category].map((e, i) => {
+          {markers?.map((e, i) => {
             return (
               <option value={e.zone} key={i}>
                 {e.zone}
@@ -126,10 +131,10 @@ function Maps() {
         </select>
       </div>
       <div className="flex h-full">
-        <div ref={mapRef} className="w-1/2 z-0 "></div>
+        <div id="map" className="w-1/2 z-0 "></div>
         <div className="w-1/2">
           <ul className={`h-full overflow-y-auto`} ref={parent}>
-            {markers2?.map((e) => {
+            {filteredMarkeres?.map((e) => {
               return (
                 <Card
                   data={e}
@@ -145,6 +150,8 @@ function Maps() {
         <Details closeDetails={openDetailsAndClose} details={userDetails} />
       )}
     </div>
+  ) : (
+    <NoPublications />
   );
 }
 

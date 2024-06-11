@@ -15,11 +15,11 @@ function Login() {
 
   return (
     <div className="h-screen w-screen flex   content-start">
-      <div className="flex w-1/2 content-center items-center justify-center space-y-5">
+      <div className="flex w-1/2 h-screen content-center items-center justify-center space-y-5">
         <img
-          src="../../public/images/login-working.jpeg"
+          src="../../public/images/login-working.png"
           alt="working-image"
-          className="w-full h-full"
+          className="w-full h-full "
         />
       </div>
       <div className="flex relative justify-center w-1/2 flex-col px-32">
