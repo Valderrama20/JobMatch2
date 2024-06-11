@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import { userAtom } from "../../context/atoms";
 import { fetchDataApi } from "../../services/apiService";
 import { methods } from "../../utils/info";
+import { toast } from "sonner";
 
 export default function Login({ loading }) {
   const navigate = useNavigate();
@@ -26,19 +27,22 @@ export default function Login({ loading }) {
     if (loginUser.ok) {
       setUser(loginUser.data);
       navigate("/");
+    } else {
+      loading(false);
+      toast.error("Tu contraseña o email esta mal");
     }
   };
 
   return (
     <form
       onSubmit={loginUser}
-      className="flex mb-2 flex-col content-center items-center justify-center"
+      className="flex mb-2 flex-col content-center items-center justify-center "
     >
       <div className=" w-full flex flex-col content-center justify-start space-y-3 h-full">
         <h1 className="text-black font-bold text-center  text-3xl">JOBMATCH</h1>
         <input
           type="email"
-          placeholder="Username"
+          placeholder="Email"
           className="bgGray border-0 rounded-md outline-noneh h-10 px-2 outline-gray-200"
           name="email"
           value={form.email}
@@ -47,7 +51,7 @@ export default function Login({ loading }) {
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Contraseña"
           className="bgGray border-0 rounded-md  px-2 h-10 outline-gray-200"
           name="password"
           value={form.password}

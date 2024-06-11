@@ -1,6 +1,7 @@
 import { favorite, mail, call, star } from "../utils/icons";
 
-function Card({ data, focus, openDetails }) {
+let userCard = () => console.log("in profile");
+function Card({ data, focus, openDetails, allInfo = true }) {
   let { description, zone, category, user, style, id } = data;
   let { name, img, phone } = user;
 
@@ -11,28 +12,32 @@ function Card({ data, focus, openDetails }) {
     <div
       className={`m-5 mt-0  items-center  flex space-x-2 cursor-pointer ${style}`}
     >
-      <img
-        src={
-          img
-            ? img
-            : `https://ui-avatars.com/api?name=${name}&background=004B19&color=fff&rounded=true`
-        }
-        alt="userImg"
-        className="h-20 w-20  "
-        onClick={() => focus(id)}
-      />
+      {allInfo && (
+        <img
+          src={
+            img
+              ? img
+              : `https://ui-avatars.com/api?name=${name}&background=004B19&color=fff&rounded=true`
+          }
+          alt="userImg"
+          className="h-20 w-20  "
+          onClick={() => focus(id)}
+        />
+      )}
       <div className="w-full">
         <div className="w-full" onClick={() => focus(id)}>
           <span className="font-medium text-[10px] px-2 py-0.5 bg-[#179e443e] text-[#004B19] rounded-full">
             {category}
           </span>
-          <div className="flex justify-between ">
-            <div className=" font-bold text-xl">{name}</div>
-            <div className="flex items-center">
-              5.0 <img src={star} alt="" className="ml-1 h-6" />
+          {allInfo && (
+            <div className="flex justify-between ">
+              <div className=" font-bold text-xl">{name}</div>
+              <div className="flex items-center">
+                5.0 <img src={star} alt="" className="ml-1 h-6" />
+              </div>
             </div>
-          </div>
-          <p className="font-medium text-base leading-3">{zone}</p>
+          )}
+          <p className="font-medium text-base leading-3 my-1">{zone}</p>
           <p className="leading-4 py-2">{description}</p>
         </div>
 
