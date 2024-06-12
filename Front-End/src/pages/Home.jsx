@@ -1,7 +1,7 @@
 import { personIcon, campanaIcon } from "../../public/svg.jsx";
 import Card from "../components/CardOfCategori.jsx";
 import { categorys, methods } from "../utils/info.js";
-import img4 from "../../public/images/img4.jpg";
+import img4 from "/images/img4.jpg";
 import MarqueeDemo from "../components/Prueba.tsx";
 import Carrusel from "../components/Carrusel.jsx";
 import { useNavigate } from "react-router-dom";

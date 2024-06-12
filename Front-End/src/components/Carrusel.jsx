@@ -24,6 +24,7 @@ function Carrusel({}) {
           {items.map((e, i) => {
             return (
               <div
+                key={i}
                 className={`w-[65%] flex-shrink-0 ${
                   currentIndex !== i && "transform scale-50"
                 } transition-transform`}
@@ -37,6 +38,7 @@ function Carrusel({}) {
           {items.map((_, i) => {
             return (
               <div
+                key={i}
                 className={`h-4 w-4 border rounded-full ${
                   currentIndex === i && "bg-green-800"
                 }`}

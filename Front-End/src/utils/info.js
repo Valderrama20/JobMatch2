@@ -14,12 +14,12 @@ import {
   reparaciones,
 } from "../utils/icons";
 
-import grupo1 from "../../public/images/grupo1.png";
-import grupo2 from "../../public/images/grupo2.png";
-import grupo3 from "../../public/images/grupo3.png";
-import avatar from "../../public/images/avatar.png";
-import avatar2 from "../../public/images/avatar2.png";
-import avatar3 from "../../public/images/avatar3.png";
+import grupo1 from "/images/grupo1.png";
+import grupo2 from "/images/grupo2.png";
+import grupo3 from "/images/grupo3.png";
+import avatar from "/images/avatar.png";
+import avatar2 from "/images/avatar2.png";
+import avatar3 from "/images/avatar3.png";
 
 export const methods = {
   GET: "get",

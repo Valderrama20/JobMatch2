@@ -37,8 +37,10 @@ function Card({ data, focus, openDetails, allInfo = true }) {
               </div>
             </div>
           )}
-          <p className="font-medium text-base leading-3 my-1">{zone}</p>
-          <p className="leading-4 py-2">{description}</p>
+          <p className="font-medium text-base leading-4 ">{zone}</p>
+          <p className="leading-4 py-2 w-[480px] break-words">
+            {description.slice(0, 50) + "..."}
+          </p>
         </div>
 
         <div className="flex justify-between items-center">
