@@ -2,13 +2,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import Card from "../CardOfPublication";
 import Details from "./DetallesOfPublication";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useAtom } from "jotai";
 import { publicationsAtom } from "../../context/atoms";
 import NoPublications from "./NoPublications";
 import Loading from "../Loading";
-
+import { cancel } from "../../utils/icons/index";
 function Maps() {
   let { category } = useParams();
   const [map, setMap] = useState(null);
@@ -19,6 +19,7 @@ function Maps() {
   const [parent] = useAutoAnimate();
   const [publications, setPublications] = useAtom(publicationsAtom);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (markers) {
@@ -108,10 +109,16 @@ function Maps() {
   return isLoading ? (
     <Loading />
   ) : markers?.length > 0 ? (
-    <div className="h-screen w-screen p-10 overflow-x-hidden">
+    <div className="relative h-screen w-screen p-10 overflow-hidden">
       <p className="font-semibold text-4xl text-[#257341] mb-10">
         {category} disponibles en tu zona
       </p>
+      <img
+        src={cancel}
+        alt="cancel"
+        className="absolute right-10 top-11 cursor-pointer"
+        onClick={() => navigate("/")}
+      />
       <div className="pb-4">
         Zona:{" "}
         <select
@@ -131,12 +138,13 @@ function Maps() {
         </select>
       </div>
       <div className="flex h-full">
-        <div id="map" className="w-1/2 z-0 "></div>
+        <div id="map" className="w-1/2 h-[80%] z-0 "></div>
         <div className="w-1/2">
-          <ul className={`h-full overflow-y-auto`} ref={parent}>
-            {filteredMarkeres?.map((e) => {
+          <ul className={`h-[80%] overflow-y-auto`} ref={parent}>
+            {filteredMarkeres?.map((e, i) => {
               return (
                 <Card
+                  key={i}
                   data={e}
                   focus={focus}
                   openDetails={openDetailsAndClose}

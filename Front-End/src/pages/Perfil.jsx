@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { fetchDataApi } from "../services/apiService";
 import { methods } from "../utils/info";
 import { Toaster, toast } from "sonner";
-import Card from "../components/CardOfPublication";
 import Loading from "../components/Loading";
+import { cancel } from "../utils/icons";
 function Perfil() {
   const [editInfo, setEditInfo] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -71,15 +71,25 @@ function Perfil() {
   return (
     <div className="bgGradient ">
       <div className="py-10 mx-20 ">
-        <div className="relative flex space-x-2 mb-16">
-          <img src={userLocal.img} alt="userImg" className="h-14 w-14" />
-          <div>
-            <h2 className="text-[#004B19] font-semibold text-3xl">Mi Perfil</h2>
-            <p className="text-[#272727] font-semibold leading-3">
-              Email: {userLocal.email}
-            </p>
+        <div className="relative flex mb-16 items-center justify-between">
+          <div className="flex space-x-2">
+            <img src={userLocal.img} alt="userImg" className="h-14 w-14" />
+            <div>
+              <h2 className="text-[#004B19] font-semibold text-3xl">
+                Mi Perfil
+              </h2>
+              <p className="text-[#272727] font-semibold leading-3">
+                Email: {userLocal.email}
+              </p>
+            </div>
           </div>
-          <button className="absolute right-0">x</button>
+
+          <img
+            src={cancel}
+            alt="cancel"
+            className="cursor-pointer"
+            onClick={() => navigation("/")}
+          />
         </div>
         <div className="flex space-x-2 mb-2">
           <div className="space-y-2">
