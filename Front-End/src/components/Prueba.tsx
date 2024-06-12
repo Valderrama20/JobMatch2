@@ -56,8 +56,8 @@ const MarqueeDemo = () => {
   return (
     <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg  bg-background  ">
       <Marquee className="[--duration:25s]">
-        {calificationsOfApp.map((e) => (
-          <Card data={e} />
+        {calificationsOfApp.map((e, i) => (
+          <Card data={e} key={i} />
         ))}
       </Marquee>
 

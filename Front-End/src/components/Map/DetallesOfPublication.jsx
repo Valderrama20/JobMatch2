@@ -1,4 +1,12 @@
-import { alarm, star, phone, mail2, chat, cancel } from "../../utils/icons";
+import {
+  alarm,
+  star,
+  phone,
+  mail2,
+  chat,
+  cancel,
+  mail,
+} from "../../utils/icons";
 function Details({ closeDetails, details }) {
   let { zone, user, description, category } = details;
   let { name, img, phone: phone2, email, availability, rating } = user;
@@ -38,7 +46,9 @@ function Details({ closeDetails, details }) {
             <p className=" text-lg text-[#206136] font-semibold leading-6">
               Descripcion:
             </p>
-            <p className="leading-4 text-sm mb-1">{description}</p>
+            <p className="leading-4 text-sm mb-1 w-[600px] break-words">
+              {description}
+            </p>
             <div className="flex items-center ">
               <img src={alarm} alt="alarm" className="h-6" />
               <p className="text-lg font-medium text-[#00551E]">
@@ -93,7 +103,7 @@ function Details({ closeDetails, details }) {
             </div>
             <button
               onClick={() => handleEmailClick(email)}
-              className="flex  items-center font-medium text-lg  px-6 rounded-lg bg-[#00551E] text-white"
+              className="flex  items-center font-semibold text-lg  px-6 py-1 rounded-md bg-[#00551E] text-white"
             >
               Pedir Cotizacion
             </button>

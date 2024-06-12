@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Login2 from "../components/login/LoginUser";
 import { Toaster } from "sonner";
 import Loading from "../components/Loading";
+import working from "/images/working.png";
 
 function Login() {
   const [createAcount, setCreateAcount] = useState(false);
@@ -16,11 +17,7 @@ function Login() {
   return (
     <div className="h-screen w-screen flex   content-start">
       <div className="flex w-1/2 h-screen content-center items-center justify-center space-y-5">
-        <img
-          src="../../public/images/login-working.png"
-          alt="working-image"
-          className="w-full h-full "
-        />
+        <img src={working} alt="working-image" className="w-full h-full " />
       </div>
       <div className="flex relative justify-center w-1/2 flex-col px-32">
         {!createAcount ? (
