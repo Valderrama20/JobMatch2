@@ -17,6 +17,7 @@ function Perfil() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+
   let [userLocal, setUserLocal] = useState({
     name: "",
     phone: "",
@@ -32,8 +33,10 @@ function Perfil() {
       navigation("/login");
       return;
     }
+
     setUserLocal(user.user);
   }, [user]);
+
 
   const chageEditInfo = () => setEditInfo((prev) => !prev);
 
