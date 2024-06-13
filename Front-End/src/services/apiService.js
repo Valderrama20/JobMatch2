@@ -5,7 +5,7 @@ import Toast from "../components/Toast";
 export const fetchDataApi = async (path, method, body = null) => {
   let user = loadFromLocalStorage("user");
   let api = axios.create({
-    baseURL: "https://jobapp-backend-5upd.onrender.com/api/v1",
+    baseURL: "https://jobapp-backend-ptoc.onrender.com/api/v1",
     headers: {
       Authorization: `Bearer ${user?.token || null}`,
       "Content-Type": "application/json",

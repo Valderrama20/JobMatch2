@@ -17,7 +17,6 @@ function Perfil() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-
   let [userLocal, setUserLocal] = useState({
     name: "",
     phone: "",
@@ -36,7 +35,6 @@ function Perfil() {
 
     setUserLocal(user.user);
   }, [user]);
-
 
   const chageEditInfo = () => setEditInfo((prev) => !prev);
 
@@ -76,7 +74,11 @@ function Perfil() {
       <div className="py-10 mx-20 ">
         <div className="relative flex mb-16 items-center justify-between">
           <div className="flex space-x-2">
-            <img src={userLocal.img} alt="userImg" className="h-14 w-14" />
+            <img
+              src={`https://ui-avatars.com/api?name=${userLocal.name}&background=004B19&color=fff&rounded=true`}
+              alt="userImg"
+              className="h-14 w-14"
+            />
             <div>
               <h2 className="text-[#004B19] font-semibold text-3xl">
                 Mi Perfil
