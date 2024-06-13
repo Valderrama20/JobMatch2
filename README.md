@@ -5,8 +5,10 @@
 ### ¿Quiénes Somos?
 En JobMatch, estamos dedicados a conectar a personas que buscan resolver tareas del hogar con profesionales calificados que ofrecen sus servicios. Nuestra plataforma es el punto de encuentro perfecto para quienes necesitan ayuda con trabajos en el hogar, así como para profesionales que buscan nuevas oportunidades laborales.
 
-### Nuestra Misión
-Nuestra misión es crear un espacio donde la oferta y la demanda de servicios del hogar se encuentren de manera sencilla y eficiente. Queremos facilitar la búsqueda de profesionales de confianza y proporcionar una plataforma donde estos expertos puedan ofrecer sus habilidades y expandir su cartera de clientes.
+### Problema que Buscamos Solucionar
+En la actualidad, encontrar profesionales calificados para tareas del hogar, como un carpintero para reparaciones en casa o un técnico que repare electrodomésticos, puede ser un desafío. A menudo, las personas enfrentan dificultades no solo para localizar a estos expertos, sino también para asegurarse de que realizarán un trabajo de calidad. Esta falta de confianza y accesibilidad puede generar frustración y desconfianza 
+
+JobMatch surge para solucionar este problema, ofreciendo una plataforma donde los usuarios pueden encontrar fácilmente profesionales calificados, respaldados por reseñas y calificaciones de clientes anteriores. De esta manera, no solo facilitamos el proceso de búsqueda, sino que también garantizamos mayor tranquilidad y confianza al momento de contratar servicios para el hogar.
 
  
 
