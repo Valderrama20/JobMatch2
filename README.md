@@ -1,10 +1,14 @@
  c18-01-m-node-react
 
- # JobMatch
+ # JobMatch 
 
- <p align="justify">
- </p> 
+### ¿Quiénes Somos?
+En JobMatch, estamos dedicados a conectar a personas que buscan resolver tareas del hogar con profesionales calificados que ofrecen sus servicios. Nuestra plataforma es el punto de encuentro perfecto para quienes necesitan ayuda con trabajos en el hogar, así como para profesionales que buscan nuevas oportunidades laborales.
 
+### Nuestra Misión
+Nuestra misión es crear un espacio donde la oferta y la demanda de servicios del hogar se encuentren de manera sencilla y eficiente. Queremos facilitar la búsqueda de profesionales de confianza y proporcionar una plataforma donde estos expertos puedan ofrecer sus habilidades y expandir su cartera de clientes.
+
+ 
 
 
 ## <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width ="30"><b> Tecnologías y Herramientas </b>
@@ -37,10 +41,10 @@
 ## 🚀 Nuestro equipo
 | Nombre | Rol | Redes Sociales |
 | ------ | --- | --------------- |
-| Noelia Funicello | UX/UI | [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/leon-asturizaga-94a80377/) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/leonasturizaga) |
-| Angelo Biancotti | QA Tester | [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/leon-asturizaga-94a80377/) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/leonasturizaga) |
-| Luis Romero | BackEnd | [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/leon-asturizaga-94a80377/) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/leonasturizaga) |
-| Jose Garcia | FrontEnd | [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/leon-asturizaga-94a80377/) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/leonasturizaga) |
+| Noelia Funicello | UX/UI | [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/noelia-funicello/) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/noefunicello) |
+| Angelo Biancotti | QA Tester | [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/angelobiancotti) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AngeloBiancotti) |
+| Luis Romero | BackEnd | [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/luisromero15/) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ROMEROLUIS15) |
+| Jose Garcia | FrontEnd | [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jose-garcia-025766241/) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Valderrama20) |
 
 
 
