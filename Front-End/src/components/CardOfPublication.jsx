@@ -3,7 +3,7 @@ import { favorite, mail, call, star } from "../utils/icons";
 let userCard = () => console.log("in profile");
 function Card({ data, focus, openDetails, allInfo = true }) {
   let { description, zone, category, user, style, id } = data;
-  let { name, img, phone } = user;
+  let { name, img, phone, rating } = user;
 
   const handleWhatsAppClick = (number) => {
     window.open(`https://wa.me/+54${number}`, "_blank");
@@ -33,7 +33,7 @@ function Card({ data, focus, openDetails, allInfo = true }) {
             <div className="flex justify-between ">
               <div className=" font-bold text-xl">{name}</div>
               <div className="flex items-center">
-                5.0 <img src={star} alt="" className="ml-1 h-6" />
+                {rating}.0 <img src={star} alt="" className="ml-1 h-6" />
               </div>
             </div>
           )}

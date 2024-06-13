@@ -10,7 +10,7 @@ export default function CreateUser({ changeForm, loading }) {
     phone: "",
     availability: "",
     img: "",
-    rating: [],
+    rating: 0,
     password: "",
     description: "",
   });

@@ -11,15 +11,15 @@ function Details({ closeDetails, details }) {
   let { zone, user, description, category } = details;
   let { name, img, phone: phone2, email, availability, rating } = user;
 
-  const calculateRating = (arr) => {
-    if (arr.length < 1) return 0;
-    return Math.floor(arr.reduce((a, b) => a + b, 0) / arr.length);
-  };
+  // const calculateRating = (arr) => {
+  //   if (arr.length < 1) return 0;
+  //   return Math.floor(arr.reduce((a, b) => a + b, 0) / arr.length);
+  // };
 
   const handleEmailClick = (email) => {
     window.open(`mailto:${email}`, "_blank");
   };
-
+  console.log(details);
   return (
     <div className=" flex top-0 absolute h-screen w-screen items-center justify-center -ml-10   ">
       <div className=" relative w-full  mx-10 bg-white rounded-xl p-3  z-50  ">
@@ -80,9 +80,7 @@ function Details({ closeDetails, details }) {
           </h4>
           <div className=" flex justify-between items-center">
             <div className="flex">
-              <span className="text-4xl font-medium ">
-                {calculateRating(rating)}/5
-              </span>
+              <span className="text-4xl font-medium ">{rating}/5</span>
               <div className="relative">
                 <div className="flex ">
                   {[1, 2, 3, 4, 5].map((_, i) => {
@@ -97,7 +95,7 @@ function Details({ closeDetails, details }) {
                   })}
                 </div>
                 <p className="left-3.5 absolute text-sm font-medium text-[#00000078]">
-                  {`(${rating.length} calificaciones)`}
+                  {`(${rating} calificaciones)`}
                 </p>
               </div>
             </div>
