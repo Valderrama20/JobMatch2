@@ -31,6 +31,7 @@ JobMatch surge para solucionar este problema, ofreciendo una plataforma donde lo
 ![Express](https://img.shields.io/badge/Express-%20pr?style=for-the-badge&logo=express&logoColor=%23ffffff&labelColor=%20%23000000&color=%20%23000000)
 ![Postgre SQL](https://img.shields.io/badge/postgre%20SQL%20-%20pr?style=for-the-badge&logo=postgresql&logoColor=%23ffffff&labelColor=%234169E1&color=%234169E1)
 ![Docker](https://img.shields.io/badge/docker-blue?style=for-the-badge&logo=docker&link=jotai.org)
+![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
 
 
 ### UX/UI
